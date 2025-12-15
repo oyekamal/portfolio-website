@@ -1,0 +1,162 @@
+{
+  "personal": {
+    "name": "Alex Johnson",
+    "title": "Full Stack Developer & UI/UX Designer",
+    "email": "alex.johnson@example.com",
+    "phone": "+1 (555) 123-4567",
+    "location": "San Francisco, CA",
+    "bio": "Passionate full-stack developer with 5+ years of experience building scalable web applications and beautiful user interfaces. I specialize in modern JavaScript frameworks, cloud architecture, and creating seamless user experiences that drive business results.",
+    "image": "https://ui-avatars.com/api/?name=Alex+Johnson&size=200&background=6366f1&color=fff"
+  },
+  "social": [
+    {
+      "platform": "GitHub",
+      "url": "https://github.com/alexjohnson",
+      "icon": "github"
+    },
+    {
+      "platform": "LinkedIn",
+      "url": "https://linkedin.com/in/alexjohnson",
+      "icon": "linkedin"
+    },
+    {
+      "platform": "Twitter",
+      "url": "https://twitter.com/alexjohnson",
+      "icon": "twitter"
+    },
+    {
+      "platform": "Portfolio",
+      "url": "https://alexjohnson.dev",
+      "icon": "globe"
+    }
+  ],
+  "experience": [
+    {
+      "company": "TechCorp Solutions",
+      "position": "Senior Full Stack Developer",
+      "location": "San Francisco, CA",
+      "startDate": "Jan 2021",
+      "endDate": "Present",
+      "responsibilities": [
+        "Led development of microservices architecture serving 2M+ daily active users",
+        "Architected and implemented real-time collaboration features using WebSockets",
+        "Mentored team of 5 junior developers and conducted code reviews",
+        "Reduced application load time by 60% through performance optimization"
+      ]
+    },
+    {
+      "company": "InnovateLab",
+      "position": "Full Stack Developer",
+      "location": "Austin, TX",
+      "startDate": "Jun 2019",
+      "endDate": "Dec 2020",
+      "responsibilities": [
+        "Built and maintained RESTful APIs using Node.js and Express",
+        "Developed responsive web applications with React and Redux",
+        "Implemented CI/CD pipelines using GitHub Actions and Docker",
+        "Collaborated with designers to create pixel-perfect UI implementations"
+      ]
+    },
+    {
+      "company": "StartupHub",
+      "position": "Junior Developer",
+      "location": "Remote",
+      "startDate": "Aug 2018",
+      "endDate": "May 2019",
+      "responsibilities": [
+        "Developed customer-facing features for e-commerce platform",
+        "Participated in agile development process and daily standups",
+        "Fixed bugs and implemented feature requests from user feedback",
+        "Wrote unit tests to maintain 85% code coverage"
+      ]
+    }
+  ],
+  "skills": {
+    "technical": [
+      "JavaScript/TypeScript",
+      "React.js",
+      "Node.js",
+      "Python",
+      "Next.js",
+      "Vue.js",
+      "HTML5/CSS3",
+      "Tailwind CSS",
+      "MongoDB",
+      "PostgreSQL",
+      "Redis",
+      "AWS",
+      "Docker",
+      "Kubernetes",
+      "Git"
+    ],
+    "soft": [
+      "Team Leadership",
+      "Problem Solving",
+      "Communication",
+      "Agile/Scrum",
+      "Code Review",
+      "Mentoring"
+    ]
+  },
+  "projects": [
+    {
+      "name": "TaskFlow Pro",
+      "description": "A comprehensive project management platform with real-time collaboration, Kanban boards, and AI-powered task suggestions. Built for teams of all sizes.",
+      "technologies": ["React", "Node.js", "Socket.io", "MongoDB", "AWS"],
+      "highlights": [
+        "10,000+ active users",
+        "Real-time collaboration",
+        "AI-powered features"
+      ],
+      "link": "https://taskflowpro.example.com",
+      "github": "https://github.com/alexjohnson/taskflow-pro"
+    },
+    {
+      "name": "EcoTracker",
+      "description": "Mobile-first web application for tracking personal carbon footprint with gamification elements and social sharing features.",
+      "technologies": ["Vue.js", "Firebase", "Chart.js", "PWA"],
+      "highlights": [
+        "Mobile-first PWA",
+        "50k+ downloads",
+        "Featured in TechCrunch"
+      ],
+      "link": "https://ecotracker.example.com",
+      "github": "https://github.com/alexjohnson/ecotracker"
+    },
+    {
+      "name": "DevHub",
+      "description": "Developer community platform with code sharing, tutorials, and live coding sessions. Includes built-in code editor and syntax highlighting.",
+      "technologies": ["Next.js", "PostgreSQL", "WebRTC", "Redis"],
+      "highlights": [
+        "5,000+ developers",
+        "Live coding sessions",
+        "Built-in code editor"
+      ],
+      "link": "https://devhub.example.com",
+      "github": "https://github.com/alexjohnson/devhub"
+    }
+  ],
+  "education": [
+    {
+      "degree": "Bachelor of Science in Computer Science",
+      "institution": "University of California, Berkeley",
+      "location": "Berkeley, CA",
+      "startDate": "2014",
+      "endDate": "2018",
+      "details": "GPA: 3.8/4.0 • Dean's List • Focus on Software Engineering and AI"
+    },
+    {
+      "degree": "Full Stack Web Development Bootcamp",
+      "institution": "Tech Academy",
+      "location": "Online",
+      "startDate": "2018",
+      "endDate": "2018",
+      "details": "Intensive 12-week program covering MERN stack, DevOps, and modern web development practices"
+    }
+  ],
+  "certifications": [
+    "AWS Certified Solutions Architect",
+    "Google Cloud Professional Developer",
+    "MongoDB Certified Developer"
+  ]
+}
