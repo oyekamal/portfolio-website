@@ -83,8 +83,7 @@
         "Implemented real-time features using Django Channels and Kafka",
         "Designed APIs, database schemas, and containerized deployments using Docker",
         "Worked on search functionality using Elasticsearch for large datasets",
-        "Designed event-driven workflows using Kafka and RabbitMQ, making architectural trade-offs between synchronous APIs and async pipelines based on consistency, latency, and failure modes",
-
+        "Designed event-driven workflows using Kafka and RabbitMQ, making architectural trade-offs between synchronous APIs and async pipelines based on consistency, latency, and failure modes"
       ]
     },
     {
