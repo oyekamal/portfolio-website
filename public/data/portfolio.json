@@ -114,35 +114,120 @@
     {
       "name": "Synctoon",
       "description": "Production-ready open-source AI-powered 2D animation tool that converts text scripts and audio into complete animated videos with automated lip-sync, expressions, and frame-based rendering.",
-      "technologies": ["Python", "AI", "Animation Pipeline"],
+      "technologies": ["Python", "AI", "Character Animation", "Video Processing"],
       "highlights": [
-        "Built to automate animation workflows for educators, storytellers, and content creators",
-        "Designed full animation pipeline from text/audio analysis to final video rendering",
-        "Actively used in demos and adopted by early users"
+        "Automatically generates animations using AI with lip sync and dynamic character expressions",
+        "Aligns perfectly with audio timing and produces smooth frame-by-frame animations",
+        "Built to make animation accessible to storytellers, educators, YouTubers, and hobbyists",
+        "Featured on YouTube with demo videos showcasing the animation capabilities"
       ],
-      "github": "https://github.com/Automate-Animation/synctoon"
+      "github": "https://github.com/Automate-Animation/synctoon",
+      "youtube": "https://lnkd.in/dAcgne4c",
+      "period": "2023 - Present"
+    },
+    {
+      "name": "ToonFrame Architect",
+      "description": "AI-Powered Animation Storyboard Generator that transforms written stories and scripts into detailed animation storyboards using Google's Gemini AI.",
+      "technologies": ["React", "TypeScript", "Vite", "Google Gemini API", "jsPDF", "JSZip"],
+      "highlights": [
+        "Script-to-storyboard conversion with dual start/end frames per scene",
+        "Consistency Bible for character & environment tracking across scenes",
+        "Supports multiple image resolutions: 1K, 2K, 4K for professional workflows",
+        "Export storyboards as PDF or ZIP with modern 2D cartoon style optimization"
+      ],
+      "github": "https://github.com/oyekamal/toonframe-architect",
+      "period": "Jan 2023"
+    },
+    {
+      "name": "Inkwell Apprentice",
+      "description": "AI-Powered Drawing Practice Tool designed to help users practice and improve their inkpen drawing skills with structured exercises and PDF practice sheets.",
+      "technologies": ["TypeScript", "React", "Google Gemini API", "Node.js", "PDF Generation"],
+      "highlights": [
+        "Generates drawing practice sheets in PDF format with structured learning progression",
+        "AI-powered assistance for creating visual prompts and drawing exercises",
+        "Supports beginner to advanced skill levels with automated practice material creation",
+        "Lightweight, fast interface with placeholder image generation for handling failures"
+      ],
+      "github": "https://github.com/oyekamal/inkwell-apprentice",
+      "period": "2023"
+    },
+    {
+      "name": "2D Mouth Lipsyncing Tool Website",
+      "description": "Innovative web-based tool that automates the process of creating 2D mouth lipsync animations using only audio files and text scripts.",
+      "technologies": ["Web Technologies", "Animation Processing", "Audio Analysis"],
+      "highlights": [
+        "Generates high-quality mouth lipsync animation with green background for easy compositing",
+        "User-friendly interface accessible for both experienced and novice animators",
+        "Automated animation generation saves time while maintaining professional quality",
+        "Green screen output allows easy integration into other video projects"
+      ],
+      "github": "https://github.com/Automate-Animation/Automate-mouth-lipsync",
+      "period": "Dec 2022 - Jan 2023"
+    },
+    {
+      "name": "Portfolio Website",
+      "description": "Modern, fully responsive React portfolio website with dynamic JSON data loading and professional PDF CV generation capabilities.",
+      "technologies": ["React 18", "Vite", "jsPDF", "jsPDF-AutoTable", "Modern CSS"],
+      "highlights": [
+        "Dark theme with glassmorphism effects and smooth animations",
+        "PDF CV generation client-side with professional formatting",
+        "Dynamic content management via single JSON file for easy updates",
+        "Component-based architecture with beautiful UI animations and gradient accents"
+      ],
+      "github": "https://github.com/oyekamal/portfolio-website",
+      "period": "2024 - Present"
     },
     {
       "name": "PostgreSQL Data Migrator",
-      "description": "Python-based database migration toolkit built to safely migrate production PostgreSQL databases across environments with minimal downtime.",
-      "technologies": ["Python", "PostgreSQL", "SQLAlchemy"],
+      "description": "Robust Python suite designed to efficiently transfer tables and data between PostgreSQL databases with advanced constraint handling.",
+      "technologies": ["Python 3.7+", "PostgreSQL", "SQLAlchemy", "psycopg2", "Bash"],
       "highlights": [
-        "Supports schema reflection, bulk transfers, and deferred constraints",
-        "Built to handle large datasets and complex schemas",
-        "Used internally across multiple projects for safe data migrations"
+        "Schema reflection with automatic table creation and constraint handling",
+        "Bulk data migration with configurable chunks for optimal performance",
+        "Deferred constraint handling for complex schemas and table exclusions",
+        "Comprehensive logging and monitoring with secure environment variable support"
       ],
-      "github": "https://github.com/oyekamal/postgresql-transfer-tool"
+      "github": "https://github.com/oyekamal/postgresql-transfer-tool",
+      "period": "2023"
+    },
+    {
+      "name": "PostgreSQL Streaming Physical Replication",
+      "description": "Docker-based setup demonstrating PostgreSQL Streaming Physical Replication for high availability and disaster recovery.",
+      "technologies": ["PostgreSQL 15", "Docker", "Docker Compose", "Shell Scripting"],
+      "highlights": [
+        "Primary-Replica architecture with real-time WAL streaming and Hot Standby mode",
+        "Fully containerized setup with auto-configuration of replication slots",
+        "Supports monitoring of replication lag and failover testing scenarios",
+        "Near real-time replication with crash-consistent, byte-for-byte data integrity"
+      ],
+      "github": "https://github.com/oyekamal/Database-Replication",
+      "period": "2023"
     },
     {
       "name": "Local-to-Internet Tunnel",
-      "description": "Lightweight DevOps utility to expose local backend services to the internet using Cloudflare tunnels.",
-      "technologies": ["Shell Scripting", "Cloudflare Tunnel"],
+      "description": "Lightweight shell-script-based tool that instantly exposes local backends to the internet using Cloudflare tunnels with auto-detection.",
+      "technologies": ["Shell Scripting", "Cloudflare Tunnel", "DevOps"],
       "highlights": [
-        "Built to simplify webhook testing and remote collaboration",
-        "Auto-detects local servers and generates public URLs instantly",
-        "Free alternative to ngrok for backend developers"
+        "Auto-detection of local backends (Django, React/Node, Flask, Java, etc.)",
+        "Instant public URL generation with comprehensive process management",
+        "Free alternative to ngrok with background process management and auto-recovery",
+        "Simplifies webhook testing, API sharing, and live demos without deployment"
       ],
-      "github": "https://github.com/oyekamal/local-to-internet-tunnel"
+      "github": "https://github.com/oyekamal/local-to-internet-tunnel",
+      "period": "2023"
+    },
+    {
+      "name": "Ubuntu Dev Setup",
+      "description": "Automated shell script that streamlines Ubuntu development environment setup by installing essential development tools with a single command.",
+      "technologies": ["Shell Scripting", "Ubuntu/Linux", "DevOps"],
+      "highlights": [
+        "One-command setup installing Git, VS Code, Postman, Teams, pgAdmin, Docker",
+        "Ensures consistent development environment across team members",
+        "Eliminates repetitive manual installations and configuration errors",
+        "Speeds up onboarding process for new developers significantly"
+      ],
+      "github": "https://github.com/oyekamal/ubuntu-dev-setup",
+      "period": "2023"
     }
   ],
 
