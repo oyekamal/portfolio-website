@@ -1,162 +1,162 @@
 {
   "personal": {
-    "name": "Alex Johnson",
-    "title": "Full Stack Developer & UI/UX Designer",
-    "email": "alex.johnson@example.com",
-    "phone": "+1 (555) 123-4567",
-    "location": "San Francisco, CA",
-    "bio": "Passionate full-stack developer with 5+ years of experience building scalable web applications and beautiful user interfaces. I specialize in modern JavaScript frameworks, cloud architecture, and creating seamless user experiences that drive business results.",
-    "image": "https://ui-avatars.com/api/?name=Alex+Johnson&size=200&background=6366f1&color=fff"
+    "name": "Muhammad Kamal",
+    "title": "Senior Backend Engineer | Python • Django • Scalable Systems",
+    "email": "oyekamalkhan@gmail.com",
+    "phone": "+92 336 0506129",
+    "location": "Islamabad, Pakistan",
+    "bio": "Senior Backend Engineer with 4+ years of experience building and scaling backend systems in production. Specialized in Python, Django/DRF, PostgreSQL, AWS, and event-driven architectures. Strong experience in system design, performance optimization, zero-downtime migrations, and CI/CD. Proven ability to own backend services end-to-end in data-intensive, production-critical environments.",
+    "image": "https://ui-avatars.com/api/?name=Muhammad+Kamal&size=200&background=111827&color=ffffff"
   },
+
   "social": [
     {
       "platform": "GitHub",
-      "url": "https://github.com/alexjohnson",
+      "url": "https://github.com/oyekamal",
       "icon": "github"
     },
     {
       "platform": "LinkedIn",
-      "url": "https://linkedin.com/in/alexjohnson",
+      "url": "https://www.linkedin.com/in/oykamal",
       "icon": "linkedin"
     },
     {
-      "platform": "Twitter",
-      "url": "https://twitter.com/alexjohnson",
-      "icon": "twitter"
-    },
-    {
       "platform": "Portfolio",
-      "url": "https://alexjohnson.dev",
+      "url": "https://oyekamal.github.io/oykamal/",
       "icon": "globe"
     }
   ],
+
   "experience": [
     {
-      "company": "TechCorp Solutions",
-      "position": "Senior Full Stack Developer",
-      "location": "San Francisco, CA",
-      "startDate": "Jan 2021",
+      "company": "Taleemabad",
+      "position": "Senior Software Engineer (Backend)",
+      "employmentType": "Full-time",
+      "location": "Islamabad, Pakistan",
+      "startDate": "Apr 2024",
       "endDate": "Present",
       "responsibilities": [
-        "Led development of microservices architecture serving 2M+ daily active users",
-        "Architected and implemented real-time collaboration features using WebSockets",
-        "Mentored team of 5 junior developers and conducted code reviews",
-        "Reduced application load time by 60% through performance optimization"
+        "Owned multiple backend services in production, including deployments, monitoring, incident resolution, and mentoring junior engineers",
+        "Designed and evolved REST APIs and internal services using Python and Django/DRF supporting thousands of daily active users",
+        "Reduced critical API latency by 40% by redesigning PostgreSQL indexes, query plans, and Redis caching strategy",
+        "Executed zero-downtime PostgreSQL migrations involving millions of rows while maintaining data integrity",
+        "Built and maintained CI/CD pipelines using Git, Docker, and AWS, reducing deployment failures by ~30%",
+        "Implemented observability using Prometheus, Grafana, ELK, and CloudWatch to detect and resolve production issues early"
       ]
     },
     {
-      "company": "InnovateLab",
-      "position": "Full Stack Developer",
-      "location": "Austin, TX",
-      "startDate": "Jun 2019",
-      "endDate": "Dec 2020",
-      "responsibilities": [
-        "Built and maintained RESTful APIs using Node.js and Express",
-        "Developed responsive web applications with React and Redux",
-        "Implemented CI/CD pipelines using GitHub Actions and Docker",
-        "Collaborated with designers to create pixel-perfect UI implementations"
-      ]
-    },
-    {
-      "company": "StartupHub",
-      "position": "Junior Developer",
+      "company": "Central Asian Cellular Forum",
+      "position": "Senior Software Engineer (Backend)",
+      "employmentType": "Contract / Remote",
       "location": "Remote",
-      "startDate": "Aug 2018",
-      "endDate": "May 2019",
+      "startDate": "Dec 2022",
+      "endDate": "Jan 2025",
       "responsibilities": [
-        "Developed customer-facing features for e-commerce platform",
-        "Participated in agile development process and daily standups",
-        "Fixed bugs and implemented feature requests from user feedback",
-        "Wrote unit tests to maintain 85% code coverage"
+        "Independently handled production incidents, bug fixes, and performance issues in a remote contract setup",
+        "Designed and deployed backend APIs using Python, Flask, and MySQL for production systems",
+        "Improved slow-performing endpoints by 80–90% through query optimization and backend refactoring",
+        "Added automated tests and service documentation to improve long-term maintainability"
+      ]
+    },
+    {
+      "company": "Paymob",
+      "position": "Software Engineer",
+      "employmentType": "Full-time",
+      "location": "Remote",
+      "startDate": "Jun 2022",
+      "endDate": "Dec 2022",
+      "responsibilities": [
+        "Built and integrated backend APIs for payment gateway systems interacting with financial institutions",
+        "Contributed to high-availability payment services handling sensitive financial transactions in a regulated environment",
+        "Collaborated with frontend and DevOps teams to deliver production releases using Docker and PostgreSQL"
+      ]
+    },
+    {
+      "company": "Rapidev DMCC",
+      "position": "Python Backend Developer",
+      "employmentType": "Full-time",
+      "location": "Islamabad, Pakistan",
+      "startDate": "Apr 2021",
+      "endDate": "Jul 2022",
+      "responsibilities": [
+        "Developed backend systems using Django REST Framework and PostgreSQL for complex business workflows",
+        "Implemented real-time features using Django Channels and Kafka",
+        "Designed APIs, database schemas, and containerized deployments using Docker",
+        "Worked on search functionality using Elasticsearch for large datasets",
+        "Designed event-driven workflows using Kafka and RabbitMQ, making architectural trade-offs between synchronous APIs and async pipelines based on consistency, latency, and failure modes",
+
+      ]
+    },
+    {
+      "company": "Metis International Limited",
+      "position": "Python Backend Developer",
+      "employmentType": "Full-time",
+      "location": "Islamabad, Pakistan",
+      "startDate": "Nov 2020",
+      "endDate": "May 2021",
+      "responsibilities": [
+        "Developed backend services using Django and Django REST Framework",
+        "Designed relational database schemas and optimized SQL queries",
+        "Applied OOP principles to build maintainable backend codebases"
       ]
     }
   ],
+
   "skills": {
-    "technical": [
-      "JavaScript/TypeScript",
-      "React.js",
-      "Node.js",
-      "Python",
-      "Next.js",
-      "Vue.js",
-      "HTML5/CSS3",
-      "Tailwind CSS",
-      "MongoDB",
-      "PostgreSQL",
-      "Redis",
-      "AWS",
-      "Docker",
-      "Kubernetes",
-      "Git"
-    ],
-    "soft": [
-      "Team Leadership",
-      "Problem Solving",
-      "Communication",
-      "Agile/Scrum",
-      "Code Review",
-      "Mentoring"
-    ]
+    "Backend": ["Python", "Django", "Django REST Framework", "Flask", "FastAPI"],
+    "Databases": ["PostgreSQL", "Redis", "Elasticsearch"],
+    "Async & Messaging": ["Celery", "Kafka", "RabbitMQ"],
+    "Cloud & DevOps": ["AWS", "Docker", "Terraform", "CI/CD"],
+    "Observability": ["Prometheus", "Grafana", "ELK Stack"],
+    "Engineering Practices": ["System Design", "Performance Optimization", "Zero-Downtime Migrations", "Production Ownership"]
   },
+
   "projects": [
     {
-      "name": "TaskFlow Pro",
-      "description": "A comprehensive project management platform with real-time collaboration, Kanban boards, and AI-powered task suggestions. Built for teams of all sizes.",
-      "technologies": ["React", "Node.js", "Socket.io", "MongoDB", "AWS"],
+      "name": "Synctoon",
+      "description": "Production-ready open-source AI-powered 2D animation tool that converts text scripts and audio into complete animated videos with automated lip-sync, expressions, and frame-based rendering.",
+      "technologies": ["Python", "AI", "Animation Pipeline"],
       "highlights": [
-        "10,000+ active users",
-        "Real-time collaboration",
-        "AI-powered features"
+        "Built to automate animation workflows for educators, storytellers, and content creators",
+        "Designed full animation pipeline from text/audio analysis to final video rendering",
+        "Actively used in demos and adopted by early users"
       ],
-      "link": "https://taskflowpro.example.com",
-      "github": "https://github.com/alexjohnson/taskflow-pro"
+      "github": "https://github.com/Automate-Animation/synctoon"
     },
     {
-      "name": "EcoTracker",
-      "description": "Mobile-first web application for tracking personal carbon footprint with gamification elements and social sharing features.",
-      "technologies": ["Vue.js", "Firebase", "Chart.js", "PWA"],
+      "name": "PostgreSQL Data Migrator",
+      "description": "Python-based database migration toolkit built to safely migrate production PostgreSQL databases across environments with minimal downtime.",
+      "technologies": ["Python", "PostgreSQL", "SQLAlchemy"],
       "highlights": [
-        "Mobile-first PWA",
-        "50k+ downloads",
-        "Featured in TechCrunch"
+        "Supports schema reflection, bulk transfers, and deferred constraints",
+        "Built to handle large datasets and complex schemas",
+        "Used internally across multiple projects for safe data migrations"
       ],
-      "link": "https://ecotracker.example.com",
-      "github": "https://github.com/alexjohnson/ecotracker"
+      "github": "https://github.com/oyekamal/postgresql-transfer-tool"
     },
     {
-      "name": "DevHub",
-      "description": "Developer community platform with code sharing, tutorials, and live coding sessions. Includes built-in code editor and syntax highlighting.",
-      "technologies": ["Next.js", "PostgreSQL", "WebRTC", "Redis"],
+      "name": "Local-to-Internet Tunnel",
+      "description": "Lightweight DevOps utility to expose local backend services to the internet using Cloudflare tunnels.",
+      "technologies": ["Shell Scripting", "Cloudflare Tunnel"],
       "highlights": [
-        "5,000+ developers",
-        "Live coding sessions",
-        "Built-in code editor"
+        "Built to simplify webhook testing and remote collaboration",
+        "Auto-detects local servers and generates public URLs instantly",
+        "Free alternative to ngrok for backend developers"
       ],
-      "link": "https://devhub.example.com",
-      "github": "https://github.com/alexjohnson/devhub"
+      "github": "https://github.com/oyekamal/local-to-internet-tunnel"
     }
   ],
+
   "education": [
     {
-      "degree": "Bachelor of Science in Computer Science",
-      "institution": "University of California, Berkeley",
-      "location": "Berkeley, CA",
-      "startDate": "2014",
-      "endDate": "2018",
-      "details": "GPA: 3.8/4.0 • Dean's List • Focus on Software Engineering and AI"
-    },
-    {
-      "degree": "Full Stack Web Development Bootcamp",
-      "institution": "Tech Academy",
-      "location": "Online",
-      "startDate": "2018",
-      "endDate": "2018",
-      "details": "Intensive 12-week program covering MERN stack, DevOps, and modern web development practices"
+      "degree": "Bachelor of Computer Science",
+      "institution": "Iqra University",
+      "location": "Pakistan",
+      "startDate": "2013",
+      "endDate": "2019",
+      "details": "Focus on software engineering, backend systems, and databases"
     }
   ],
-  "certifications": [
-    "AWS Certified Solutions Architect",
-    "Google Cloud Professional Developer",
-    "MongoDB Certified Developer"
-  ]
+
+  "certifications": []
 }

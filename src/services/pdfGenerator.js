@@ -145,38 +145,30 @@ export const generateCV = (portfolioData) => {
   doc.setFontSize(16);
   doc.setFont(undefined, 'bold');
   doc.setTextColor(0, 0, 0);
-  doc.text('Skills', margin, yPosition);
+  doc.text('Skills & Technologies', margin, yPosition);
   yPosition += 10;
 
-  // Technical Skills
-  doc.setFontSize(12);
-  doc.setFont(undefined, 'bold');
-  doc.setTextColor(99, 102, 241);
-  doc.text('Technical Skills', margin, yPosition);
-  yPosition += 6;
+  // Iterate through skill categories
+  Object.entries(skills).forEach(([categoryName, skillsList]) => {
+    if (yPosition > 250) {
+      doc.addPage();
+      yPosition = 20;
+    }
 
-  doc.setFontSize(10);
-  doc.setFont(undefined, 'normal');
-  doc.setTextColor(0, 0, 0);
-  const techSkillsText = skills.technical.join(' • ');
-  const techLines = doc.splitTextToSize(techSkillsText, contentWidth);
-  doc.text(techLines, margin, yPosition);
-  yPosition += techLines.length * 5 + 8;
+    doc.setFontSize(12);
+    doc.setFont(undefined, 'bold');
+    doc.setTextColor(99, 102, 241);
+    doc.text(categoryName, margin, yPosition);
+    yPosition += 6;
 
-  // Soft Skills
-  doc.setFontSize(12);
-  doc.setFont(undefined, 'bold');
-  doc.setTextColor(99, 102, 241);
-  doc.text('Soft Skills', margin, yPosition);
-  yPosition += 6;
-
-  doc.setFontSize(10);
-  doc.setFont(undefined, 'normal');
-  doc.setTextColor(0, 0, 0);
-  const softSkillsText = skills.soft.join(' • ');
-  const softLines = doc.splitTextToSize(softSkillsText, contentWidth);
-  doc.text(softLines, margin, yPosition);
-  yPosition += softLines.length * 5 + 10;
+    doc.setFontSize(10);
+    doc.setFont(undefined, 'normal');
+    doc.setTextColor(0, 0, 0);
+    const skillsText = skillsList.join(' • ');
+    const skillLines = doc.splitTextToSize(skillsText, contentWidth);
+    doc.text(skillLines, margin, yPosition);
+    yPosition += skillLines.length * 5 + 8;
+  });
 
   // Certifications
   if (certifications && certifications.length > 0) {
