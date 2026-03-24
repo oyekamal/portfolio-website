@@ -232,37 +232,43 @@ function BlogPostPage() {
 
             {/* Main Content */}
             <div className="content-body">
-              {/* Introduction */}
-              {post.content.introduction && (
-                <p className="introduction">{post.content.introduction}</p>
-              )}
-              
-              {/* Content Sections */}
-              {post.content.sections && post.content.sections.map((section, index) => (
-                <div key={index} className="content-section">
-                  <h2>{section.heading}</h2>
-                  <p>{section.content}</p>
-                </div>
-              ))}
+              {typeof post.content === 'string' ? (
+                <p className="introduction">{post.content}</p>
+              ) : (
+                <>
+                  {/* Introduction */}
+                  {post.content.introduction && (
+                    <p className="introduction">{post.content.introduction}</p>
+                  )}
 
-              {/* Key Takeaways */}
-              {post.content.keyTakeaways && post.content.keyTakeaways.length > 0 && (
-                <div className="key-takeaways">
-                  <h2>Key Takeaways</h2>
-                  <ul>
-                    {post.content.keyTakeaways.map((takeaway, index) => (
-                      <li key={index}>{takeaway}</li>
-                    ))}
-                  </ul>
-                </div>
-              )}
+                  {/* Content Sections */}
+                  {post.content.sections && post.content.sections.map((section, index) => (
+                    <div key={index} className="content-section">
+                      <h2>{section.heading}</h2>
+                      <p>{section.content}</p>
+                    </div>
+                  ))}
 
-              {/* Conclusion */}
-              {post.content.conclusion && (
-                <div className="conclusion">
-                  <h2>Conclusion</h2>
-                  <p>{post.content.conclusion}</p>
-                </div>
+                  {/* Key Takeaways */}
+                  {post.content.keyTakeaways && post.content.keyTakeaways.length > 0 && (
+                    <div className="key-takeaways">
+                      <h2>Key Takeaways</h2>
+                      <ul>
+                        {post.content.keyTakeaways.map((takeaway, index) => (
+                          <li key={index}>{takeaway}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  {/* Conclusion */}
+                  {post.content.conclusion && (
+                    <div className="conclusion">
+                      <h2>Conclusion</h2>
+                      <p>{post.content.conclusion}</p>
+                    </div>
+                  )}
+                </>
               )}
             </div>
 
