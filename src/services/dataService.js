@@ -79,6 +79,18 @@ export async function getBlogBySlug(slug) {
 }
 
 /**
+ * Fetch raw markdown content for a blog post
+ * @param {string} contentFile - Relative path like "posts/slug.md"
+ * @returns {Promise<string>} - Raw markdown string
+ */
+export async function fetchMarkdownPost(contentFile) {
+  const url = `${GITHUB_RAW_BASE_URL}${contentFile}`;
+  const response = await fetch(url);
+  if (!response.ok) throw new Error(`Failed to fetch markdown: ${response.status}`);
+  return response.text();
+}
+
+/**
  * Prefetch all data for better performance
  * @returns {Promise<Object>} - Object containing all data
  */

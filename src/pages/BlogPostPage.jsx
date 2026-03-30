@@ -1,13 +1,16 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import { getBlogBySlug, getBlogsData } from '../services/dataService';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import { getBlogBySlug, getBlogsData, fetchMarkdownPost } from '../services/dataService';
 import './BlogPostPage.css';
 
 function BlogPostPage() {
   const { slug } = useParams();
   const navigate = useNavigate();
   const [post, setPost] = useState(null);
+  const [markdownContent, setMarkdownContent] = useState(null);
   const [relatedPosts, setRelatedPosts] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -19,15 +22,18 @@ function BlogPostPage() {
       .then(([foundPost, data]) => {
         if (foundPost) {
           setPost(foundPost);
-          
-          // Get related posts (same category, exclude current)
           const related = data.blogs
             .filter(blog => blog.category === foundPost.category && blog.slug !== slug)
             .slice(0, 3);
           setRelatedPosts(related);
+
+          if (foundPost.contentFile) {
+            return fetchMarkdownPost(foundPost.contentFile).then(md => setMarkdownContent(md));
+          }
         }
         setLoading(false);
       })
+      .then(() => setLoading(false))
       .catch(error => {
         console.error('Error loading blog post:', error);
         setLoading(false);
@@ -94,10 +100,11 @@ function BlogPostPage() {
     },
     "keywords": post.seo.keywords.join(', '),
     "articleSection": post.category,
-    "wordCount": typeof post.content === 'string' ? post.content.split(' ').length : 
-                 (post.content.introduction?.split(' ').length || 0) + 
-                 (post.content.sections?.reduce((acc, s) => acc + s.content.split(' ').length, 0) || 0) +
-                 (post.content.conclusion?.split(' ').length || 0)
+    "wordCount": markdownContent ? markdownContent.split(' ').length :
+                 typeof post.content === 'string' ? post.content.split(' ').length :
+                 (post.content?.introduction?.split(' ').length || 0) +
+                 (post.content?.sections?.reduce((acc, s) => acc + s.content.split(' ').length, 0) || 0) +
+                 (post.content?.conclusion?.split(' ').length || 0)
   };
 
   return (
@@ -232,25 +239,24 @@ function BlogPostPage() {
 
             {/* Main Content */}
             <div className="content-body">
-              {typeof post.content === 'string' ? (
+              {markdownContent ? (
+                <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                  {markdownContent}
+                </ReactMarkdown>
+              ) : typeof post.content === 'string' ? (
                 <p className="introduction">{post.content}</p>
               ) : (
                 <>
-                  {/* Introduction */}
-                  {post.content.introduction && (
+                  {post.content?.introduction && (
                     <p className="introduction">{post.content.introduction}</p>
                   )}
-
-                  {/* Content Sections */}
-                  {post.content.sections && post.content.sections.map((section, index) => (
+                  {post.content?.sections && post.content.sections.map((section, index) => (
                     <div key={index} className="content-section">
                       <h2>{section.heading}</h2>
                       <p>{section.content}</p>
                     </div>
                   ))}
-
-                  {/* Key Takeaways */}
-                  {post.content.keyTakeaways && post.content.keyTakeaways.length > 0 && (
+                  {post.content?.keyTakeaways && post.content.keyTakeaways.length > 0 && (
                     <div className="key-takeaways">
                       <h2>Key Takeaways</h2>
                       <ul>
@@ -260,9 +266,7 @@ function BlogPostPage() {
                       </ul>
                     </div>
                   )}
-
-                  {/* Conclusion */}
-                  {post.content.conclusion && (
+                  {post.content?.conclusion && (
                     <div className="conclusion">
                       <h2>Conclusion</h2>
                       <p>{post.content.conclusion}</p>
