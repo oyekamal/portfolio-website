@@ -205,7 +205,15 @@ export const generateCV = (portfolioData) => {
     );
   }
 
-  // Download the PDF
-  const fileName = `${personal.name.replace(/\s+/g, '_')}_CV.pdf`;
+  // Download the PDF with standardized filename: FirstName_LastName_Xyrs-primarytech.pdf
+  const earliestStart = experience.reduce((earliest, exp) => {
+    const date = new Date(exp.startDate);
+    return date < earliest ? date : earliest;
+  }, new Date(experience[0].startDate));
+  const yearsExp = ((Date.now() - earliestStart.getTime()) / (1000 * 60 * 60 * 24 * 365.25)).toFixed(1);
+  const primaryTech = (skills['Backend'] || skills['backend'] || Object.values(skills)[0] || ['dev'])[1] || 'backend';
+  const techSlug = primaryTech.toLowerCase().replace(/\s+/g, '-');
+  const namePart = personal.name.replace(/\s+/g, '_');
+  const fileName = `${namePart}_${yearsExp}yrs-${techSlug}.pdf`;
   doc.save(fileName);
 };
