@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300&family=Inter:wght@300;400;600&display=swap');
 
 :root {
   /* ---- Ink on Paper: botanical-editorial palette ---- */
@@ -10,6 +10,7 @@
   --slate: #b6ced5;
   --charcoal: #222222;
   --border: #efeeeb;
+  --forest-shadow: #0c2f10;
 }
 
 *, *::before, *::after {
@@ -34,7 +35,7 @@ body {
 }
 
 code {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
 }
 
 a {

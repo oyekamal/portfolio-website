@@ -97,7 +97,9 @@ const Hero = ({ personal, social }) => {
                     </div>
                     <div className="hero-image">
                         <div className="image-wrapper">
-                            <img src={personal.image} alt={personal.name} />
+                            <div className="image-inner">
+                                <img src={personal.image} alt={personal.name} />
+                            </div>
                             <div className="hero-stat-bar">
                                 <div className="hero-stat">
                                     <span className="hero-stat-number">4+</span>
