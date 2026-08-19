@@ -1,5 +1,5 @@
 .blog-page {
   min-height: 100vh;
-  background: var(--bg);
+  background: var(--paper);
   padding-top: 80px;
 }
