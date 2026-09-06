@@ -6,8 +6,8 @@
     "email": "oyekamalkhan@gmail.com",
     "phone": "+92 336 0506129",
     "location": "Islamabad, Pakistan",
-    "bio": "Senior Backend Engineer with 4+ years of experience building and scaling production systems. Python/Django specialist with deep AWS expertise (Terraform, ECS, RDS, S3). Skilled in system design, performance optimization, zero-downtime migrations, and CI/CD. Proven ability to own backend services end-to-end while leveraging AI tools (Claude) to accelerate development velocity and architectural decisions. Builder of AI-powered side projects. Strong track record mentoring junior engineers. Available for AI automation and agentic-workflow projects — I build Claude-powered agents that run real operations: Slack/Notion/GitHub orchestration, job pipelines, content systems. Message me on WhatsApp or Instagram @kamalkecoding.",
-    "image": "https://ui-avatars.com/api/?name=Muhammad+Kamal&size=200&background=111827&color=ffffff",
+    "bio": "Senior Backend Engineer with 5+ years of experience building and scaling production systems. Python/Django specialist with deep AWS expertise (Terraform, ECS, RDS, S3). Skilled in system design, performance optimization, zero-downtime migrations, and CI/CD. Proven ability to own backend services end-to-end while leveraging AI tools (Claude) to accelerate development velocity and architectural decisions. Builder of AI-powered side projects. Strong track record mentoring junior engineers. Available for AI automation and agentic-workflow projects — I build Claude-powered agents that run real operations: Slack/Notion/GitHub orchestration, job pipelines, content systems. Message me on WhatsApp or Instagram @kamalkecoding.",
+    "image": "https://ui-avatars.com/api/?name=Muhammad+Kamal&size=200&background=0f3e17&color=fffefc",
     "whatsapp": "923360506129",
     "whatsappMessage": "Hi Kamal, I found you via your portfolio and want to talk about AI automation / agentic workflows."
   },
@@ -273,23 +273,27 @@
       "period": "Dec 2022 - Jan 2023"
     },
     {
-      "name": "Personal Agent Workspace",
-      "description": "An open-source autonomous workspace operating system built with Claude AI. Demonstrates AI-augmented knowledge work: daily standups, task orchestration, email management, persistent memory, multi-domain tracking (work, fitness, content), and Obsidian vault integration.",
+      "name": "Personal Agent Workspace → Kamil (v2)",
+      "description": "An autonomous personal AI agent built on Claude Code. v1 is open source; v2 (\"Kamil\") runs daily as a private harness: it triages Slack, reads and writes Notion, watches GitHub PRs, drives a 100+ skill router, and runs unattended jobs (lead scraping, job search, content pipeline) with plan-first human approval gates.",
       "technologies": [
-        "Claude API",
-        "Obsidian",
+        "Claude Code",
+        "Python",
+        "Node.js",
+        "SQLite",
+        "Slack API",
+        "Notion API",
+        "GitHub API",
         "MCP Servers",
-        "Bash Scripting",
-        "Git",
-        "Markdown"
+        "Docker",
+        "Cron"
       ],
       "highlights": [
-        "Autonomous daily standup: AI reads context, generates status snapshot, routes work intelligently",
-        "Persistent memory system: user profiles, feedback, projects, external references—all auto-indexed and searchable",
-        "Email management automation: fetch Gmail, track contacts, draft responses, log interactions",
-        "Multi-domain tracking: Taleemabad (work), fitness, business, content, contacts—unified in Obsidian vault",
-        "Serves as open-source blueprint for AI-augmented personal knowledge management",
-        "Deployed at https://github.com/Orenda-Project/personal-agent-workspace"
+        "Team orchestrator: polls Notion tickets, Slack mentions and GitHub PRs every 270s, groups events per ticket, dispatches subagents, never writes code without an approved plan",
+        "Skills router with 100+ vendored and custom skills (debugging, PR review, blog engine, FreeCAD/Blender, lead generation, WhatsApp outreach) selected per request",
+        "Self-evolution loop: failures are logged, patterns detected, and rules/skills rewritten automatically",
+        "Persistent memory + knowledge graph (SQLite) shared across sessions and cron jobs",
+        "Hard safety rails: PreToolUse hooks block secrets and oversize config, every outbound message is draft-first",
+        "v1 open source: https://github.com/Orenda-Project/personal-agent-workspace"
       ],
       "github": "https://github.com/Orenda-Project/personal-agent-workspace",
       "period": "2024 - Present"
@@ -321,17 +325,19 @@
       "name": "Portfolio Website",
       "description": "Modern, fully responsive React portfolio website with dynamic JSON data loading and professional PDF CV generation capabilities.",
       "technologies": [
-        "React 18",
-        "Vite",
+        "React 19",
+        "Vite 7",
+        "React Router",
+        "react-markdown",
         "jsPDF",
-        "jsPDF-AutoTable",
-        "Modern CSS"
+        "Netlify"
       ],
       "highlights": [
-        "Dark theme with glassmorphism effects and smooth animations",
+        "Botanical-editorial design system, fully responsive",
         "PDF CV generation client-side with professional formatting",
         "Dynamic content management via single JSON file for easy updates",
-        "Component-based architecture with beautiful UI animations and gradient accents"
+        "Component-based architecture with beautiful UI animations and gradient accents",
+        "Content pulled live from a separate portfolio-data repo (portfolio.json + blogs.json, RSS-aggregated daily)"
       ],
       "github": "https://github.com/oyekamal/portfolio-website",
       "period": "2024 - Present"
@@ -413,16 +419,17 @@
     "description": "Building with AI as a core part of the development workflow. Using Claude to accelerate architecture decisions, code generation, debugging, and autonomous agent systems.",
     "highlights": [
       {
-        "title": "Personal Agent Workspace (Open Source)",
-        "description": "An autonomous workspace operating system built with Claude. Demonstrates how AI can manage complex, multi-domain work: daily standups, task orchestration, email management, memory persistence, and project tracking.",
+        "title": "Personal AI Agent \"Kamil\" (v1 open source, v2 in daily use)",
+        "description": "An autonomous Claude Code agent that triages Slack, manages Notion, watches GitHub, scrapes leads, runs a job-search pipeline and writes content — all behind plan-first approval gates. v1 is open source; v2 is the private harness running every day.",
         "technologies": [
-          "Claude API",
-          "Obsidian",
-          "Git",
-          "Bash Automation",
-          "MCP Servers"
+          "Claude Code",
+          "MCP Servers",
+          "Python",
+          "Node.js",
+          "SQLite",
+          "Slack/Notion/GitHub APIs"
         ],
-        "impact": "Single developer managing 5+ concurrent projects with 95% automation; serves as a blueprint for AI-augmented knowledge work"
+        "impact": "One engineer running 5+ concurrent projects with most routine work automated; a working reference for agent harness design (orchestrator, skills router, memory, safety hooks)"
       },
       {
         "title": "Claude-Augmented Development Methodology",
