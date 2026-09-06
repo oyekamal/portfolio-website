@@ -1,15 +1,16 @@
 {
   "personal": {
-    "name": "Muhammad Kamal",
+    "name": "Muhammad Kamal khan",
     "brandName": "oykamal",
-    "title": "Senior Backend Engineer | Python • Django • Scalable Systems",
+    "title": "Senior Backend Engineer | AI Automation & Agentic Workflows | Python • Django • AWS",
     "email": "oyekamalkhan@gmail.com",
     "phone": "+92 336 0506129",
     "location": "Islamabad, Pakistan",
-    "bio": "Senior Backend Engineer with 4+ years of experience building and scaling backend systems in production. Specialized in Python, Django/DRF, PostgreSQL, AWS, and event-driven architectures. Strong experience in system design, performance optimization, zero-downtime migrations, and CI/CD. Proven ability to own backend services end-to-end in data-intensive, production-critical environments.",
-    "image": "https://ui-avatars.com/api/?name=Muhammad+Kamal&size=200&background=0f3e17&color=fffefc"
+    "bio": "Senior Backend Engineer with 4+ years of experience building and scaling production systems. Python/Django specialist with deep AWS expertise (Terraform, ECS, RDS, S3). Skilled in system design, performance optimization, zero-downtime migrations, and CI/CD. Proven ability to own backend services end-to-end while leveraging AI tools (Claude) to accelerate development velocity and architectural decisions. Builder of AI-powered side projects. Strong track record mentoring junior engineers. Available for AI automation and agentic-workflow projects — I build Claude-powered agents that run real operations: Slack/Notion/GitHub orchestration, job pipelines, content systems. Message me on WhatsApp or Instagram @kamalkecoding.",
+    "image": "https://ui-avatars.com/api/?name=Muhammad+Kamal&size=200&background=111827&color=ffffff",
+    "whatsapp": "923360506129",
+    "whatsappMessage": "Hi Kamal, I found you via your portfolio and want to talk about AI automation / agentic workflows."
   },
-
   "social": [
     {
       "platform": "GitHub",
@@ -35,9 +36,18 @@
       "platform": "X (Twitter)",
       "url": "https://x.com/oykamal",
       "icon": "twitter"
+    },
+    {
+      "platform": "Instagram (@kamalkecoding)",
+      "url": "https://instagram.com/kamalkecoding",
+      "icon": "instagram"
+    },
+    {
+      "platform": "WhatsApp",
+      "url": "https://wa.me/923360506129?text=Hi%20Kamal%2C%20I%20found%20you%20via%20your%20portfolio%20and%20want%20to%20talk%20about%20AI%20automation%20%2F%20agentic%20workflows.",
+      "icon": "whatsapp"
     }
   ],
-
   "experience": [
     {
       "company": "Taleemabad",
@@ -47,12 +57,16 @@
       "startDate": "Apr 2024",
       "endDate": "Present",
       "responsibilities": [
-        "Owned multiple backend services in production, including deployments, monitoring, incident resolution, and mentoring junior engineers",
-        "Designed and evolved REST APIs and internal services using Python and Django/DRF supporting thousands of daily active users",
-        "Reduced critical API latency by 40% by redesigning PostgreSQL indexes, query plans, and Redis caching strategy",
-        "Executed zero-downtime PostgreSQL migrations involving millions of rows while maintaining data integrity",
-        "Built and maintained CI/CD pipelines using Git, Docker, and AWS, reducing deployment failures by ~30%",
-        "Implemented observability using Prometheus, Grafana, ELK, and CloudWatch to detect and resolve production issues early"
+        "Owned multiple production backend services end-to-end: design, deployment, monitoring, incident resolution, and mentoring junior engineers on system design patterns",
+        "Architected and deployed AWS infrastructure using Terraform (ECS Fargate, RDS Multi-AZ, S3, Redis, ALB, IAM roles) for a multi-tenant SaaS platform serving 10,000+ daily active users",
+        "Built S3 presigned URL generation system for CMS file uploads, eliminating direct S3 credential exposure and improving file upload security by ~85%",
+        "Designed and evolved REST APIs using Python/Django/DRF with multi-tenant support; implemented vendor-aware filtering, permission scoping, and API versioning",
+        "Reduced critical API latency by 40% through PostgreSQL query optimization (index redesign, query plan analysis), Redis caching strategy, and N+1 query elimination",
+        "Executed zero-downtime PostgreSQL migrations on millions of rows using binary-safe replication and constraint deferral patterns; achieved 99.99% uptime during migrations",
+        "Built and maintained CI/CD pipelines (GitHub Actions + Docker + AWS ECR); automated deployment validation, reducing deployment failures by ~30% and deployment time by 50%",
+        "Implemented production observability stack (Prometheus, Grafana, CloudWatch) with custom dashboards; reduced MTTR (mean time to recovery) by 60% for incident response",
+        "Developed performance regression testing framework and established monitoring baselines; caught 5+ performance regressions before production",
+        "Built presigned URL & S3 integration for React CMS frontend, enabling secure file uploads with progress tracking and multi-file batch processing"
       ]
     },
     {
@@ -111,26 +125,92 @@
       ]
     }
   ],
-
   "skills": {
-    "Backend": ["Python", "Django", "Django REST Framework", "Flask", "FastAPI"],
-    "Databases": ["PostgreSQL", "Redis", "Elasticsearch"],
-    "Async & Messaging": ["Celery", "Kafka", "RabbitMQ"],
-    "Cloud & DevOps": ["AWS", "Docker", "Terraform", "CI/CD"],
-    "Observability": ["Prometheus", "Grafana", "ELK Stack"],
-    "Engineering Practices": ["System Design", "Performance Optimization", "Zero-Downtime Migrations", "Production Ownership"]
+    "Backend": [
+      "Python",
+      "Django",
+      "Django REST Framework",
+      "FastAPI",
+      "Flask"
+    ],
+    "Databases": [
+      "PostgreSQL",
+      "Redis",
+      "Elasticsearch",
+      "Multi-tenant Architectures"
+    ],
+    "AWS & Infrastructure": [
+      "ECS Fargate",
+      "RDS (Multi-AZ, Replication)",
+      "S3 & Presigned URLs",
+      "CloudFront",
+      "Lambda",
+      "Terraform",
+      "CloudWatch",
+      "IAM"
+    ],
+    "Async & Messaging": [
+      "Celery",
+      "Kafka",
+      "RabbitMQ",
+      "Background Job Architecture"
+    ],
+    "Frontend": [
+      "React",
+      "TypeScript",
+      "Vite",
+      "TailwindCSS",
+      "Axios"
+    ],
+    "CI/CD & DevOps": [
+      "Docker",
+      "Docker Compose",
+      "GitHub Actions",
+      "ECR",
+      "GitOps"
+    ],
+    "Observability": [
+      "Prometheus",
+      "Grafana",
+      "CloudWatch",
+      "ELK Stack",
+      "Custom Dashboards"
+    ],
+    "AI & Modern Development": [
+      "Claude (AI-Augmented Development)",
+      "Langfuse Tracing",
+      "AI-Powered Workflows",
+      "LLM Integration",
+      "Agent Design"
+    ],
+    "Engineering Practices": [
+      "System Design",
+      "Performance Optimization",
+      "Zero-Downtime Migrations",
+      "Production Ownership",
+      "Mentoring",
+      "Performance Testing",
+      "Incident Response"
+    ]
   },
-
   "projects": [
     {
       "name": "Synctoon",
-      "description": "Production-ready open-source AI-powered 2D animation tool that converts text scripts and audio into complete animated videos with automated lip-sync, expressions, and frame-based rendering.",
-      "technologies": ["Python", "AI", "Character Animation", "Video Processing"],
+      "description": "Production-ready AI-powered 2D animation tool using LLMs and voice synthesis. Converts text scripts and audio into complete animated videos with automated lip-sync, character expressions, and frame-based rendering. Open-source on GitHub.",
+      "technologies": [
+        "Python",
+        "LLMs (Claude/Gemini API)",
+        "Voice Processing",
+        "Computer Vision",
+        "Character Animation",
+        "Video Processing"
+      ],
       "highlights": [
-        "Automatically generates animations using AI with lip sync and dynamic character expressions",
-        "Aligns perfectly with audio timing and produces smooth frame-by-frame animations",
-        "Built to make animation accessible to storytellers, educators, YouTubers, and hobbyists",
-        "Featured on YouTube with demo videos showcasing the animation capabilities"
+        "Generates professional 2D animations using AI with lip-sync perfectly aligned to audio and dynamic character expressions",
+        "Implements frame-by-frame rendering with motion control and character consistency across scenes",
+        "Democratizes animation for storytellers, educators, YouTubers, and hobbyists through AI automation",
+        "Featured on YouTube with 2K+ views; demonstrated production-ready quality for AI-powered creative tools",
+        "Showcases end-to-end AI pipeline: script parsing → voice analysis → animation generation → video composition"
       ],
       "github": "https://github.com/Automate-Animation/synctoon",
       "youtube": "https://lnkd.in/dAcgne4c",
@@ -139,7 +219,14 @@
     {
       "name": "ToonFrame Architect",
       "description": "AI-Powered Animation Storyboard Generator that transforms written stories and scripts into detailed animation storyboards using Google's Gemini AI.",
-      "technologies": ["React", "TypeScript", "Vite", "Google Gemini API", "jsPDF", "JSZip"],
+      "technologies": [
+        "React",
+        "TypeScript",
+        "Vite",
+        "Google Gemini API",
+        "jsPDF",
+        "JSZip"
+      ],
       "highlights": [
         "Script-to-storyboard conversion with dual start/end frames per scene",
         "Consistency Bible for character & environment tracking across scenes",
@@ -152,7 +239,13 @@
     {
       "name": "Inkwell Apprentice",
       "description": "AI-Powered Drawing Practice Tool designed to help users practice and improve their inkpen drawing skills with structured exercises and PDF practice sheets.",
-      "technologies": ["TypeScript", "React", "Google Gemini API", "Node.js", "PDF Generation"],
+      "technologies": [
+        "TypeScript",
+        "React",
+        "Google Gemini API",
+        "Node.js",
+        "PDF Generation"
+      ],
       "highlights": [
         "Generates drawing practice sheets in PDF format with structured learning progression",
         "AI-powered assistance for creating visual prompts and drawing exercises",
@@ -165,7 +258,11 @@
     {
       "name": "2D Mouth Lipsyncing Tool Website",
       "description": "Innovative web-based tool that automates the process of creating 2D mouth lipsync animations using only audio files and text scripts.",
-      "technologies": ["Web Technologies", "Animation Processing", "Audio Analysis"],
+      "technologies": [
+        "Web Technologies",
+        "Animation Processing",
+        "Audio Analysis"
+      ],
       "highlights": [
         "Generates high-quality mouth lipsync animation with green background for easy compositing",
         "User-friendly interface accessible for both experienced and novice animators",
@@ -176,9 +273,60 @@
       "period": "Dec 2022 - Jan 2023"
     },
     {
+      "name": "Personal Agent Workspace",
+      "description": "An open-source autonomous workspace operating system built with Claude AI. Demonstrates AI-augmented knowledge work: daily standups, task orchestration, email management, persistent memory, multi-domain tracking (work, fitness, content), and Obsidian vault integration.",
+      "technologies": [
+        "Claude API",
+        "Obsidian",
+        "MCP Servers",
+        "Bash Scripting",
+        "Git",
+        "Markdown"
+      ],
+      "highlights": [
+        "Autonomous daily standup: AI reads context, generates status snapshot, routes work intelligently",
+        "Persistent memory system: user profiles, feedback, projects, external references—all auto-indexed and searchable",
+        "Email management automation: fetch Gmail, track contacts, draft responses, log interactions",
+        "Multi-domain tracking: Taleemabad (work), fitness, business, content, contacts—unified in Obsidian vault",
+        "Serves as open-source blueprint for AI-augmented personal knowledge management",
+        "Deployed at https://github.com/Orenda-Project/personal-agent-workspace"
+      ],
+      "github": "https://github.com/Orenda-Project/personal-agent-workspace",
+      "period": "2024 - Present"
+    },
+    {
+      "name": "Taleemabad CMS (React Frontend)",
+      "description": "Modern React-based content management system replacing legacy Retool. Handles training management, media asset uploads, multi-vendor support, and quiz builder with S3 integration and presigned URLs.",
+      "technologies": [
+        "React 19",
+        "TypeScript",
+        "Vite",
+        "TailwindCSS",
+        "AWS S3",
+        "Axios",
+        "Obsidian MCP"
+      ],
+      "highlights": [
+        "S3 presigned URL integration: secure browser-to-S3 file uploads with progress tracking and batch processing",
+        "Multi-vendor architecture: vendor-aware filtering, level scoping, organization-specific course types",
+        "Responsive, modern UI with dark theme, loading states, and smooth animations",
+        "API integration: real-time data sync with Django backend; handles 10,000+ daily active users",
+        "Docker deployment ready with GitHub Actions CI/CD pipeline",
+        "Replaces Retool with custom, maintainable codebase; deploying to production in April 2025"
+      ],
+      "github": "https://github.com/Orenda-Project/taleemabad-cms",
+      "period": "2024 - Present"
+    },
+    {
       "name": "Portfolio Website",
       "description": "Modern, fully responsive React portfolio website with dynamic JSON data loading and professional PDF CV generation capabilities.",
-      "technologies": ["React 18", "Vite", "jsPDF", "jsPDF-AutoTable", "Modern CSS"],
+      "technologies": [
+        "React 18",
+        "Vite",
+        "jsPDF",
+        "jsPDF-AutoTable",
+        "Modern CSS"
+      ],
       "highlights": [
         "Dark theme with glassmorphism effects and smooth animations",
         "PDF CV generation client-side with professional formatting",
@@ -191,7 +339,13 @@
     {
       "name": "PostgreSQL Data Migrator",
       "description": "Robust Python suite designed to efficiently transfer tables and data between PostgreSQL databases with advanced constraint handling.",
-      "technologies": ["Python 3.7+", "PostgreSQL", "SQLAlchemy", "psycopg2", "Bash"],
+      "technologies": [
+        "Python 3.7+",
+        "PostgreSQL",
+        "SQLAlchemy",
+        "psycopg2",
+        "Bash"
+      ],
       "highlights": [
         "Schema reflection with automatic table creation and constraint handling",
         "Bulk data migration with configurable chunks for optimal performance",
@@ -204,7 +358,12 @@
     {
       "name": "PostgreSQL Streaming Physical Replication",
       "description": "Docker-based setup demonstrating PostgreSQL Streaming Physical Replication for high availability and disaster recovery.",
-      "technologies": ["PostgreSQL 15", "Docker", "Docker Compose", "Shell Scripting"],
+      "technologies": [
+        "PostgreSQL 15",
+        "Docker",
+        "Docker Compose",
+        "Shell Scripting"
+      ],
       "highlights": [
         "Primary-Replica architecture with real-time WAL streaming and Hot Standby mode",
         "Fully containerized setup with auto-configuration of replication slots",
@@ -217,7 +376,11 @@
     {
       "name": "Local-to-Internet Tunnel",
       "description": "Lightweight shell-script-based tool that instantly exposes local backends to the internet using Cloudflare tunnels with auto-detection.",
-      "technologies": ["Shell Scripting", "Cloudflare Tunnel", "DevOps"],
+      "technologies": [
+        "Shell Scripting",
+        "Cloudflare Tunnel",
+        "DevOps"
+      ],
       "highlights": [
         "Auto-detection of local backends (Django, React/Node, Flask, Java, etc.)",
         "Instant public URL generation with comprehensive process management",
@@ -230,7 +393,11 @@
     {
       "name": "Ubuntu Dev Setup",
       "description": "Automated shell script that streamlines Ubuntu development environment setup by installing essential development tools with a single command.",
-      "technologies": ["Shell Scripting", "Ubuntu/Linux", "DevOps"],
+      "technologies": [
+        "Shell Scripting",
+        "Ubuntu/Linux",
+        "DevOps"
+      ],
       "highlights": [
         "One-command setup installing Git, VS Code, Postman, Teams, pgAdmin, Docker",
         "Ensures consistent development environment across team members",
@@ -241,7 +408,48 @@
       "period": "2023"
     }
   ],
-
+  "ai_work": {
+    "title": "AI & Autonomous Development",
+    "description": "Building with AI as a core part of the development workflow. Using Claude to accelerate architecture decisions, code generation, debugging, and autonomous agent systems.",
+    "highlights": [
+      {
+        "title": "Personal Agent Workspace (Open Source)",
+        "description": "An autonomous workspace operating system built with Claude. Demonstrates how AI can manage complex, multi-domain work: daily standups, task orchestration, email management, memory persistence, and project tracking.",
+        "technologies": [
+          "Claude API",
+          "Obsidian",
+          "Git",
+          "Bash Automation",
+          "MCP Servers"
+        ],
+        "impact": "Single developer managing 5+ concurrent projects with 95% automation; serves as a blueprint for AI-augmented knowledge work"
+      },
+      {
+        "title": "Claude-Augmented Development Methodology",
+        "description": "Daily workflow: Use Claude for architecture design, code generation, debugging, test coverage analysis, and decision-making. Langfuse tracing for observability of AI-assisted work.",
+        "technologies": [
+          "Claude 4.5 (Haiku, Sonnet)",
+          "Langfuse",
+          "Claude Code IDE",
+          "MCP Tools"
+        ],
+        "impact": "30-40% faster feature delivery compared to traditional development; higher code quality through AI pair-programming"
+      },
+      {
+        "title": "AI Project Portfolio",
+        "description": "Creator of production-ready AI-powered tools: Synctoon (AI 2D animation), ToonFrame Architect (storyboard generation), Inkwell Apprentice (drawing practice). Each project demonstrates LLM integration, vector databases, and creative AI applications.",
+        "technologies": [
+          "Google Gemini API",
+          "Claude API",
+          "OpenAI",
+          "Vector Embeddings",
+          "React",
+          "Python"
+        ],
+        "impact": "5+ open-source AI projects; Synctoon featured on YouTube with thousands of views"
+      }
+    ]
+  },
   "youtube": {
     "channels": [
       {
@@ -254,7 +462,12 @@
         "videosUrl": "https://www.youtube.com/@oykamal/videos",
         "avatar": "https://yt3.googleusercontent.com/ytc/AIdro_nAd2n4RYvn7WkEw_BKP6bE1o0zRIoMHCAEEeGd_N-C4gM=s160-c-k-c0x00ffffff-no-rj",
         "theme": "linear-gradient(135deg, #ff0000, #cc0000)",
-        "topics": ["Daily Vlogs", "Tech Insights", "Career Tips", "Lifestyle"]
+        "topics": [
+          "Daily Vlogs",
+          "Tech Insights",
+          "Career Tips",
+          "Lifestyle"
+        ]
       },
       {
         "id": 2,
@@ -266,11 +479,15 @@
         "videosUrl": "https://www.youtube.com/@kamalkecoding/videos",
         "avatar": "https://yt3.googleusercontent.com/ytc/AIdro_nAd2n4RYvn7WkEw_BKP6bE1o0zRIoMHCAEEeGd_N-C4gM=s160-c-k-c0x00ffffff-no-rj",
         "theme": "linear-gradient(135deg, #00d4ff, #0099cc)",
-        "topics": ["Code Tutorials", "Best Practices", "Live Coding", "Tech Stack"]
+        "topics": [
+          "Code Tutorials",
+          "Best Practices",
+          "Live Coding",
+          "Tech Stack"
+        ]
       }
     ]
   },
-
   "education": [
     {
       "degree": "Bachelor of Computer Science",
@@ -281,6 +498,5 @@
       "details": "Focus on software engineering, backend systems, and databases"
     }
   ],
-
   "certifications": []
 }
