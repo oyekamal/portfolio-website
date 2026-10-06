@@ -10,7 +10,15 @@
     "image": "https://ui-avatars.com/api/?name=Muhammad+Kamal&size=200&background=0f3e17&color=fffefc",
     "whatsapp": "923360506129",
     "whatsappMessage": "Hi Kamal, I found you via your portfolio and want to talk about AI automation / agentic workflows.",
-    "tagline": "I find problems people keep tripping over, then ship the smallest thing that fixes them."
+    "tagline": "I find problems people keep tripping over, then ship the smallest thing that fixes them.",
+    "stack": [
+      "AI agents",
+      "Claude Code",
+      "MCP",
+      "Python",
+      "React",
+      "Local LLMs"
+    ]
   },
   "social": [
     {

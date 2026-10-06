@@ -228,7 +228,7 @@ export default function Home({ portfolioData }) {
             <h1 className="name"><Letters text={personal.name || ''} /></h1>
             <p className="role rise" style={{ '--d': '140ms' }}>{personal.title}</p>
             <p className="tagline rise" style={{ '--d': '173ms' }}>{personal.tagline}</p>
-            <p className="stack rise" style={{ '--d': '206ms' }}>Python · Django · AWS · AI agents <span className="open"><span className="live-dot" aria-hidden="true" />Open to AI-automation projects</span></p>
+            <p className="stack rise" style={{ '--d': '206ms' }}>{(personal.stack || []).join(' · ')} <span className="open"><span className="live-dot" aria-hidden="true" />Open to AI-automation projects</span></p>
 
             <div className="klog rise" style={{ '--d': '240ms' }} aria-label="What Kamil is doing">
               <div className="klog-head"><span className="live-dot" aria-hidden="true" />kamil.log<span className="dim">the blue slime is my AI agent</span></div>
