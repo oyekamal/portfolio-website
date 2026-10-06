@@ -1,0 +1,51 @@
+.slime {
+  position: fixed;
+  left: 0; top: 0;
+  z-index: 50;
+  width: 120px; height: 110px;
+  pointer-events: none;  /* only the jelly itself is grabbable */
+  touch-action: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  will-change: transform;
+}
+.slime svg > path, .slime svg > g, .slime svg > ellipse { pointer-events: auto; cursor: grab; }
+.slime .slime-shadow { pointer-events: none; }
+.slime:active svg > path { cursor: grabbing; }
+.slime:focus-visible { outline: none; }
+.slime:focus-visible .slime-body { stroke: #1f6fc4; stroke-width: 2.5; }
+.slime-rig { transform-origin: 60px 100px; }
+.slime svg { display: block; overflow: visible; }
+.slime-body { filter: drop-shadow(0 6px 10px rgba(31, 111, 196, 0.28)); stroke: rgba(18, 63, 138, .35); stroke-width: 1.2; }
+.slime-depth { pointer-events: none; }
+.slime-shadow { fill: #0b1217; opacity: .35; filter: blur(2px); }
+.slime-mouth { fill: #0b1217; stroke: #0b1217; stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
+.mood-idle .slime-mouth, .mood-wink .slime-mouth, .mood-sleepy .slime-mouth { fill: none; }
+.mood-happy .slime-mouth { fill: #0b1217; }
+
+.slime-say {
+  position: absolute;
+  bottom: calc(14px + 62px * var(--sc, 1));
+  width: max-content; max-width: min(230px, calc(100vw - 32px));
+  padding: 10px 14px;
+  font: 500 13px/1.4 'Geist', system-ui, sans-serif;
+  color: #0b1217;
+  background: #fff;
+  border: 1px solid #dde3e9;
+  border-radius: 16px;
+  box-shadow: 0 12px 30px -14px rgba(11, 18, 23, .35);
+  pointer-events: none;
+  animation: say-in .42s cubic-bezier(.2, 1.4, .4, 1) both;
+}
+.slime-say.left { right: calc(60px + 34px * var(--sc, 1)); border-bottom-right-radius: 4px; transform-origin: 100% 100%; }
+.slime-say.right { left: calc(60px + 34px * var(--sc, 1)); border-bottom-left-radius: 4px; transform-origin: 0 100%; }
+.slime-say.center { left: var(--bl, 0); width: min(230px, calc(100vw - 32px)); }
+.slime-say.below { bottom: auto; top: calc(110px - 6px); }
+.slime-say.left.below { border-bottom-right-radius: 16px; border-top-right-radius: 4px; }
+.slime-say.right.below { border-bottom-left-radius: 16px; border-top-left-radius: 4px; }
+@keyframes say-in { from { opacity: 0; transform: scale(.6) translateY(8px); } }
+@media (prefers-color-scheme: dark) {
+  .slime-say { background: #111a21; color: #e8edf2; border-color: #1e2a33; }
+  .slime-shadow { fill: #000; }
+}
+@media (prefers-reduced-motion: reduce) { .slime-say { animation: none; } }

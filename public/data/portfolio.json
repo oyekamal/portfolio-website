@@ -532,7 +532,9 @@
         "Graphs",
         "Claude Code"
       ],
-      "mood": "curious"
+      "mood": "curious",
+      "kamil": "This one draws how agents like me are wired. 14 stars.",
+      "kamilMood": "wow"
     },
     {
       "name": "maps2whatsapp",
@@ -545,7 +547,9 @@
         "Ollama",
         "WhatsApp"
       ],
-      "mood": "cheeky"
+      "mood": "cheeky",
+      "kamil": "No API keys, no Docker. He hates setup more than I do.",
+      "kamilMood": "wink"
     },
     {
       "name": "kamil-agent",
@@ -558,7 +562,9 @@
         "MCP",
         "SQLite"
       ],
-      "mood": "proud"
+      "mood": "proud",
+      "kamil": "That's me! I don't touch anything until he says go.",
+      "kamilMood": "happy"
     },
     {
       "name": "harness-evolve",
@@ -571,7 +577,9 @@
         "Evals",
         "Agents"
       ],
-      "mood": "thinking"
+      "mood": "thinking",
+      "kamil": "It found 88 stale rules on day one. Some were mine.",
+      "kamilMood": "wow"
     },
     {
       "name": "urdu-reading-course",
@@ -585,7 +593,9 @@
         "Offline",
         "Audio"
       ],
-      "mood": "happy"
+      "mood": "happy",
+      "kamil": "1,463 recorded clips. Tap one, it talks back.",
+      "kamilMood": "happy"
     },
     {
       "name": "freecad-claude-house-designer",
@@ -598,7 +608,9 @@
         "MCP",
         "BIM"
       ],
-      "mood": "focus"
+      "mood": "focus",
+      "kamil": "700+ parts, and the footings carry real loads.",
+      "kamilMood": "wow"
     }
   ],
   "hunting": [
