@@ -1,15 +1,16 @@
 {
   "personal": {
-    "name": "Muhammad Kamal khan",
+    "name": "Muhammad Kamal",
     "brandName": "oykamal",
-    "title": "Senior Backend Engineer | AI Automation & Agentic Workflows | Python • Django • AWS",
+    "title": "R&D Engineer · Problem Hunter",
     "email": "oyekamalkhan@gmail.com",
     "phone": "+92 336 0506129",
     "location": "Islamabad, Pakistan",
-    "bio": "Senior Backend Engineer with 5+ years of experience building and scaling production systems. Python/Django specialist with deep AWS expertise (Terraform, ECS, RDS, S3). Skilled in system design, performance optimization, zero-downtime migrations, and CI/CD. Proven ability to own backend services end-to-end while leveraging AI tools (Claude) to accelerate development velocity and architectural decisions. Builder of AI-powered side projects. Strong track record mentoring junior engineers. Available for AI automation and agentic-workflow projects — I build Claude-powered agents that run real operations: Slack/Notion/GitHub orchestration, job pipelines, content systems. Message me on WhatsApp or Instagram @kamalkecoding.",
+    "bio": "I work on the Tinkering R&D team at Taleemabad, an ed-tech company in Islamabad. Before R&D I spent five years on backend: Django on AWS for 10,000+ daily users, payments at Paymob, and a lot of production incidents I'd rather not repeat.",
     "image": "https://ui-avatars.com/api/?name=Muhammad+Kamal&size=200&background=0f3e17&color=fffefc",
     "whatsapp": "923360506129",
-    "whatsappMessage": "Hi Kamal, I found you via your portfolio and want to talk about AI automation / agentic workflows."
+    "whatsappMessage": "Hi Kamal, I found you via your portfolio and want to talk about AI automation / agentic workflows.",
+    "tagline": "I find problems people keep tripping over, then ship the smallest thing that fixes them."
   },
   "social": [
     {
@@ -51,11 +52,24 @@
   "experience": [
     {
       "company": "Taleemabad",
+      "position": "R&D Engineer, Tinkering R&D",
+      "employmentType": "Full-time",
+      "location": "Islamabad, Pakistan",
+      "startDate": "Aug 2026",
+      "endDate": "Present",
+      "responsibilities": [
+        "Find problems teachers, parents and engineers keep hitting, then prototype and ship the fix",
+        "Built offline, research-backed reading courses for Urdu and English (1,463 recorded Urdu clips)",
+        "Run an AI agent harness (Kamil) that triages Slack, Notion and GitHub behind plan-first approval gates"
+      ]
+    },
+    {
+      "company": "Taleemabad",
       "position": "Senior Software Engineer (Backend)",
       "employmentType": "Full-time",
       "location": "Islamabad, Pakistan",
       "startDate": "Apr 2024",
-      "endDate": "Present",
+      "endDate": "Aug 2026",
       "responsibilities": [
         "Owned multiple production backend services end-to-end: design, deployment, monitoring, incident resolution, and mentoring junior engineers on system design patterns",
         "Architected and deployed AWS infrastructure using Terraform (ECS Fargate, RDS Multi-AZ, S3, Redis, ALB, IAM roles) for a multi-tenant SaaS platform serving 10,000+ daily active users",
@@ -505,5 +519,96 @@
       "details": "Focus on software engineering, backend systems, and databases"
     }
   ],
-  "certifications": []
+  "certifications": [],
+  "problems": [
+    {
+      "name": "claude-code-flow-visualizer",
+      "problem": "Nobody can see what a Claude Code setup actually does.",
+      "fix": "Renders any harness — agents, skills, hooks, MCP servers — as an interactive graph, entirely in the browser.",
+      "proof": "★14 · Playwright E2E tested",
+      "repo": "https://github.com/oyekamal/claude-code-flow-visualizer",
+      "tags": [
+        "React",
+        "Graphs",
+        "Claude Code"
+      ],
+      "mood": "curious"
+    },
+    {
+      "name": "maps2whatsapp",
+      "problem": "Freelancers can't afford lead-gen tools.",
+      "fix": "Finds local businesses on Google Maps and messages them on WhatsApp, with drafts written by a local AI. No API keys, no Docker.",
+      "proof": "★12 · Windows, macOS, Linux",
+      "repo": "https://github.com/oyekamal/maps2whatsapp",
+      "tags": [
+        "Python",
+        "Ollama",
+        "WhatsApp"
+      ],
+      "mood": "cheeky"
+    },
+    {
+      "name": "kamil-agent",
+      "problem": "One engineer, five projects, endless busywork.",
+      "fix": "My AI engineer: triages Slack, runs Notion, watches GitHub — and does nothing until I approve its plan.",
+      "proof": "★8 · 4 forks",
+      "repo": "https://github.com/oyekamal/kamil-agent",
+      "tags": [
+        "Claude Code",
+        "MCP",
+        "SQLite"
+      ],
+      "mood": "proud"
+    },
+    {
+      "name": "harness-evolve",
+      "problem": "Agents that edit their own rules tend to get worse.",
+      "fix": "An edit lands only if it beats a best-of-K retry baseline on held-out tasks.",
+      "proof": "First run found 88 stale rules",
+      "repo": "https://github.com/oyekamal/harness-evolve",
+      "tags": [
+        "Python",
+        "Evals",
+        "Agents"
+      ],
+      "mood": "thinking"
+    },
+    {
+      "name": "urdu-reading-course",
+      "problem": "Many children in Pakistan leave school unable to read.",
+      "fix": "Free, offline, research-backed courses for Urdu and English, from first sounds up.",
+      "proof": "13 units · 1,463 audio clips",
+      "repo": "https://github.com/oyekamal/urdu-reading-course",
+      "live": "https://oyekamal.github.io/urdu-reading-course/app/",
+      "tags": [
+        "Pedagogy",
+        "Offline",
+        "Audio"
+      ],
+      "mood": "happy"
+    },
+    {
+      "name": "freecad-claude-house-designer",
+      "problem": "Designing a house in Pakistan is mostly guesswork.",
+      "fix": "Claude drives FreeCAD to model a full 5-marla house, with footings sized from a real load takedown and FEM-checked members.",
+      "proof": "700+ parametric objects",
+      "repo": "https://github.com/oyekamal/freecad-claude-house-designer",
+      "tags": [
+        "FreeCAD",
+        "MCP",
+        "BIM"
+      ],
+      "mood": "focus"
+    }
+  ],
+  "hunting": [
+    {
+      "text": "A reading app that works offline on cheap phones",
+      "repo": "https://github.com/oyekamal/sound-out"
+    },
+    {
+      "text": "Real problems homeschooling families in Pakistan face",
+      "repo": "https://github.com/oyekamal/homeschooling-pakistan"
+    }
+  ]
 }

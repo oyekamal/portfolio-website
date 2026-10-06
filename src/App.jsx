@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import Navigation from './components/Navigation';
 import Home from './pages/Home';
@@ -8,6 +8,24 @@ import BlogPage from './pages/BlogPage';
 import BlogPostPage from './pages/BlogPostPage';
 import { getPortfolioData } from './services/dataService';
 import './App.css';
+
+// The redesigned home page draws its own chrome; other pages keep the old nav + footer.
+function Chrome({ portfolioData, children }) {
+  const home = useLocation().pathname === '/';
+  return (
+    <>
+      {!home && <Navigation portfolioData={portfolioData} />}
+      {children}
+      {!home && (
+        <footer className="footer">
+          <div className="container">
+            <p>© {new Date().getFullYear()} {portfolioData.personal?.name}</p>
+          </div>
+        </footer>
+      )}
+    </>
+  );
+}
 
 function App() {
   const [portfolioData, setPortfolioData] = useState(null);
@@ -51,19 +69,14 @@ function App() {
     <HelmetProvider>
       <Router>
         <div className="App">
-          <Navigation portfolioData={portfolioData} />
+          <Chrome portfolioData={portfolioData}>
           <Routes>
             <Route path="/" element={<Home portfolioData={portfolioData} />} />
             <Route path="/youtube" element={<YouTubePage />} />
             <Route path="/blog" element={<BlogPage />} />
             <Route path="/blog/:slug" element={<BlogPostPage />} />
           </Routes>
-
-          <footer className="footer">
-            <div className="container">
-              <p>© 2024 {portfolioData.personal?.name}. Built with ❤️ using React</p>
-            </div>
-          </footer>
+          </Chrome>
         </div>
       </Router>
     </HelmetProvider>
