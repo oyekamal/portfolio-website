@@ -1,6 +1,6 @@
 import { useMemo, useRef, useState } from 'react';
 import { useFrame, useThree } from '@react-three/fiber';
-import { Html, Outlines } from '@react-three/drei';
+import { Html, Outlines, useGLTF } from '@react-three/drei';
 import * as THREE from 'three';
 import PropTypes from 'prop-types';
 import { STOPS } from './stops';
@@ -115,27 +115,58 @@ function Paths() {
   ));
 }
 
-/* ---------------- props ---------------- */
+/* ---------------- Kenney Nature Kit models (CC0), re-shaded to match the planet ---------------- */
 
-function Tree({ s = 1, kind = 0 }) {
+const MODEL = (n) => `/models/nature/${n}.glb`;
+const NATURE = ['tree_oak', 'tree_default', 'tree_detailed', 'tree_fat', 'tree_pineRoundA', 'tree_pineTallA_detailed', 'tree_oak_fall',
+  'tree_default_fall', 'tree_small', 'plant_bush', 'plant_bushLarge', 'plant_bushDetailed', 'grass_large', 'flower_redA', 'flower_yellowA',
+  'flower_purpleA', 'rock_largeA', 'rock_smallA', 'rock_tallB', 'mushroom_redGroup', 'stump_roundDetailed', 'log_stack', 'crop_pumpkin',
+  'crops_cornStageD', 'campfire_stones', 'tent_detailedOpen', 'lily_large'];
+NATURE.forEach((n) => useGLTF.preload(MODEL(n)));
+
+// Kenney's teal-green palette, remapped by material name onto the planet's palette.
+const KENNEY = {
+  leafsGreen: '#56b06f', leafsDark: '#3f8f5f', leafsFall: '#f0a14e', grass: '#7fc27d', corn: '#f2cf5b',
+  woodBark: '#9a6440', woodBarkDark: '#6e4a33', woodBirch: '#efe6d6', woodInner: '#e9c79a', wood: '#c58a5c',
+  dirt: '#c7bfd3', stone: '#b9b3c6', colorRed: '#ef6f5e', colorYellow: '#ffc85c', colorPurple: '#b98ae6', _defaultMat: '#f6eedf',
+};
+
+// Flatten a GLTF into its meshes once (geometry + toon material per original colour + transform).
+const flatCache = {};
+function flatten(name, scene) {
+  if (flatCache[name]) return flatCache[name];
+  scene.updateMatrixWorld(true);
+  const parts = [];
+  const box = new THREE.Box3().setFromObject(scene);
+  scene.traverse((o) => {
+    if (!o.isMesh) return;
+    const src = Array.isArray(o.material) ? o.material : [o.material];
+    const mat = src.map((m) => toon(KENNEY[m.name] || `#${m.color.getHexString()}`));
+    parts.push({ geo: o.geometry, mat: mat.length === 1 ? mat[0] : mat, matrix: o.matrixWorld.clone() });
+  });
+  return (flatCache[name] = { parts, minY: box.min.y, height: Math.max(0.001, box.max.y - box.min.y) });
+}
+
+function Model({ name, h = 1, ink = 0.02, ...rest }) {
+  const { scene } = useGLTF(MODEL(name));
+  const { parts, minY, height } = flatten(name, scene);
+  const k = h / height;
   return (
-    <group scale={s}>
-      <M geo={<cylinderGeometry args={[0.1, 0.15, 0.7, 6]} />} color={C.woodDark} position={[0, 0.35, 0]} t={0.03} />
-      {kind === 0 ? (
-        <>
-          <M geo={<icosahedronGeometry args={[0.55, 0]} />} color={C.leaf} position={[0, 0.95, 0]} />
-          <M geo={<icosahedronGeometry args={[0.38, 0]} />} color={C.leafDark} position={[0.2, 1.32, 0.05]} />
-        </>
-      ) : (
-        <>
-          <M geo={<coneGeometry args={[0.55, 0.9, 6]} />} color={C.leafDark} position={[0, 0.95, 0]} />
-          <M geo={<coneGeometry args={[0.4, 0.7, 6]} />} color={C.leaf} position={[0, 1.4, 0]} />
-        </>
-      )}
+    <group {...rest}>
+      <group scale={k} position={[0, -minY * k, 0]}>
+        {parts.map((pt, i) => (
+          <mesh key={i} geometry={pt.geo} material={pt.mat} matrix={pt.matrix} matrixAutoUpdate={false} castShadow receiveShadow>
+            {ink > 0 && <Ink t={ink / k} />}
+          </mesh>
+        ))}
+      </group>
     </group>
   );
 }
-Tree.propTypes = { s: PropTypes.number, kind: PropTypes.number };
+Model.propTypes = { name: PropTypes.string.isRequired, h: PropTypes.number, ink: PropTypes.number };
+
+/* ---------------- props ---------------- */
+
 
 function Fence({ n = 5, w = 0.45 }) {
   return (
@@ -453,23 +484,21 @@ function Windmill() {
 
 /* ---------------- Kamil ---------------- */
 
-function Kamil({ hop, excited, mood, point }) {
+function Kamil({ ctl, excited, mood, point }) {
   const g = useRef(), body = useRef(), eyes = useRef(), armL = useRef(), armR = useRef(), brows = useRef();
-  const st = useRef({ y: 0, vy: 0, sq: 1, vsq: 0, lastHop: hop, steps: 0, blink: 0, nextBlink: 2 });
+  const st = useRef({ y: 0, vy: 0, sq: 1, vsq: 0, blink: 0, nextBlink: 2, lands: 0 });
   const { pointer } = useThree();
   useFrame(({ clock }, rawDt) => {
     const dt = Math.min(rawDt, 1 / 30); // springs blow up on long frames (slow phones, tab switches)
     const s = st.current, t = clock.elapsedTime;
-    if (hop !== s.lastHop) { s.lastHop = hop; s.steps = 4; }                         // walking you there: four quick hops
-    if (s.y <= 0 && s.vy === 0) {
-      if (s.steps > 0) { s.steps -= 1; s.vy = 6.5; s.vsq = 2; }
-      else if (excited && Math.sin(t * 4.2) > 0.985) { s.vy = 4.2; s.vsq = 1.5; }
-    }
+    const c = ctl.current;
+    if (c.lands !== s.lands) { s.lands = c.lands; s.vsq -= 2.2; }                    // squash on every step
+    if (!c.walking && s.y <= 0 && s.vy === 0 && excited && Math.sin(t * 4.2) > 0.985) { s.vy = 4.2; s.vsq = 1.5; }
     s.vy -= 30 * dt; s.y += s.vy * dt;
     if (s.y < 0) { if (s.vy < -2) s.vsq -= Math.min(4, -s.vy * 0.4); s.y = 0; s.vy = 0; }
     s.vsq += ((1 + Math.sin(t * 2.2) * 0.025 - s.sq) * 120 - s.vsq * 9) * dt; s.sq += s.vsq * dt;
-    const air = s.y > 0.05;
-    const sy = air ? 1.12 : s.sq, sx = air ? 0.92 : 1 / Math.sqrt(Math.max(0.6, s.sq));
+    const air = s.y > 0.05 || c.air > 0.15;
+    const sy = air ? 1.1 : s.sq, sx = air ? 0.93 : 1 / Math.sqrt(Math.max(0.6, s.sq));
     g.current.position.y = s.y;
     body.current.scale.set(sx, sy, sx);
     if (t > s.nextBlink) { s.blink = 1; s.nextBlink = t + 2 + Math.random() * 3; }
@@ -477,9 +506,15 @@ function Kamil({ hop, excited, mood, point }) {
     const shut = 1 - Math.sin(s.blink * Math.PI) * 0.9;
     eyes.current.children.forEach((e, i) => { e.scale.y = mood === 'wink' && i === 1 ? 0.15 : shut; });
     // arms: wave hello when excited, point at the place when presenting it
-    const wave = excited && !point ? 2.5 + Math.sin(t * 9) * 0.45 : 0.5;
-    armR.current.rotation.z = THREE.MathUtils.damp(armR.current.rotation.z, point ? 1.45 : wave, 10, dt);
-    armL.current.rotation.z = THREE.MathUtils.damp(armL.current.rotation.z, air ? -1.1 : -0.5, 10, dt);
+    // arms: swing while walking, wave hello when excited, point at the place when presenting it
+    // Arm angles (z): the right arm hangs at -1.1 and lifts toward +; the left arm mirrors it.
+    const swing = Math.sin(c.stepPhase * Math.PI * 2) * 0.45;
+    const pr = point && !c.walking && c.pointSide > 0, pl = point && !c.walking && c.pointSide < 0;
+    const waving = excited && !point && !c.walking;
+    const rT = c.walking ? -1.0 + swing : pr ? 0.25 : waving ? 1.25 + Math.sin(t * 9) * 0.4 : air ? -0.3 : -1.1;
+    const lT = c.walking ? 1.0 + swing : pl ? -0.25 : air ? 0.3 : 1.1;
+    armR.current.rotation.z = THREE.MathUtils.damp(armR.current.rotation.z, rT, 10, dt);
+    armL.current.rotation.z = THREE.MathUtils.damp(armL.current.rotation.z, lT, 10, dt);
     brows.current.position.y = THREE.MathUtils.damp(brows.current.position.y, excited || point ? 0.5 : 0.42, 8, dt);
     eyes.current.position.x = THREE.MathUtils.damp(eyes.current.position.x, pointer.x * 0.18, 8, dt);
     eyes.current.position.y = THREE.MathUtils.damp(eyes.current.position.y, 0.15 + pointer.y * 0.1, 8, dt);
@@ -517,14 +552,14 @@ function Kamil({ hop, excited, mood, point }) {
     </group>
   );
 }
-Kamil.propTypes = { hop: PropTypes.string, excited: PropTypes.bool, mood: PropTypes.string, point: PropTypes.bool };
+Kamil.propTypes = { ctl: PropTypes.object.isRequired, excited: PropTypes.bool, mood: PropTypes.string, point: PropTypes.bool };
 
 /* ---------------- scatter + sky ---------------- */
 
 const SCATTER = (() => {
   let seed = 11; const rnd = () => ((seed = (seed * 16807) % 2147483647) / 2147483647);
   const out = [];
-  for (let i = 0; i < 160; i++) {
+  for (let i = 0; i < 190; i++) {
     const n = new THREE.Vector3(rnd() * 2 - 1, rnd() * 2 - 1, rnd() * 2 - 1).normalize();
     if (STOP_DIRS.some((d) => n.angleTo(d) < 0.36)) continue;
     if (PATHS.some((p) => p.n.angleTo(n) < 0.06)) continue;
@@ -535,25 +570,50 @@ const SCATTER = (() => {
 })();
 const MILL = new THREE.Vector3(0.55, -0.35, -0.76).normalize();
 
+const PICK = {
+  tree: [['tree_oak', 1.9], ['tree_default', 1.8], ['tree_detailed', 2.0], ['tree_fat', 1.6], ['tree_pineRoundA', 2.0], ['tree_pineTallA_detailed', 2.5], ['tree_oak_fall', 1.9], ['tree_default_fall', 1.8], ['tree_small', 1.2]],
+  rock: [['rock_largeA', 0.45], ['rock_smallA', 0.25], ['rock_tallB', 0.6], ['stump_roundDetailed', 0.3]],
+  bush: [['plant_bush', 0.55], ['plant_bushLarge', 0.8], ['plant_bushDetailed', 0.65]],
+  flower: [['flower_redA', 0.4], ['flower_yellowA', 0.4], ['flower_purpleA', 0.4], ['grass_large', 0.4], ['mushroom_redGroup', 0.35]],
+};
+
 function Scatter() {
-  return SCATTER.map((it, i) => (
-    <group key={i} position={surface(it.n, -0.03)} quaternion={upTo(it.n)}>
-      <group rotation={[0, it.r, 0]}>
-        {it.kind === 'tree' && <Tree s={it.s} kind={it.tk} />}
-        {it.kind === 'rock' && <M geo={<dodecahedronGeometry args={[0.35 * it.s, 0]} />} color={C.rock} position={[0, 0.12, 0]} t={0.03} />}
-        {it.kind === 'bush' && <M geo={<icosahedronGeometry args={[0.35 * it.s, 0]} />} color={C.leafDark} position={[0, 0.2, 0]} t={0.03} />}
-        {it.kind === 'flower' && (
-          <group>
-            <M geo={<cylinderGeometry args={[0.02, 0.02, 0.3, 4]} />} color={C.leaf} position={[0, 0.15, 0]} ink={false} />
-            <M geo={<sphereGeometry args={[0.11, 8, 6]} />} color={i % 3 ? C.pink : C.gold} position={[0, 0.32, 0]} t={0.02} />
-          </group>
-        )}
+  return SCATTER.map((it, i) => {
+    const list = PICK[it.kind];
+    const [name, h] = list[i % list.length];
+    return (
+      <group key={i} position={surface(it.n, -0.04)} quaternion={upTo(it.n)}>
+        <Model name={name} h={h * (0.8 + it.s * 0.3)} rotation={[0, it.r, 0]} ink={it.kind === 'flower' ? 0 : 0.02} />
       </group>
-    </group>
-  ));
+    );
+  });
 }
 
-function Sky() {
+// Little scenes around each place, plus a camp in the meadow.
+const CAMP = new THREE.Vector3(-0.55, 0.35, -0.76).normalize();
+function Dressing({ id }) {
+  if (id === 'workshop') return (<>
+    <Model name="log_stack" h={0.55} position={[-2.0, 0, -0.3]} rotation={[0, 0.4, 0]} />
+    <Model name="stump_roundDetailed" h={0.35} position={[1.9, 0, -0.1]} />
+  </>);
+  if (id === 'greenhouse') return (<>
+    {[[-1.9, 0.3], [-2.2, -0.4], [2.1, -0.6]].map(([x, z], i) => <Model key={i} name="crop_pumpkin" h={0.32} position={[x, 0, z]} rotation={[0, i, 0]} />)}
+    {[[-1.6, -1.1], [-1.1, -1.5], [1.7, -1.3]].map(([x, z], i) => <Model key={i} name="crops_cornStageD" h={0.9} position={[x, 0, z]} ink={0} />)}
+  </>);
+  if (id === 'office') return (<>
+    <Model name="plant_bushLarge" h={0.6} position={[-0.95, 0, 0.95]} />
+    <Model name="plant_bushLarge" h={0.6} position={[0.95, 0, 0.95]} rotation={[0, 1, 0]} />
+  </>);
+  if (id === 'post') return (<>
+    <Model name="flower_redA" h={0.4} position={[-1.3, 0, 0.55]} ink={0} />
+    <Model name="flower_yellowA" h={0.4} position={[0.25, 0, 0.55]} ink={0} />
+  </>);
+  if (id === 'tower') return <Model name="rock_tallB" h={0.9} position={[-1.3, 0, -0.6]} />;
+  return null;
+}
+Dressing.propTypes = { id: PropTypes.string };
+
+function Sky({ clouds: showClouds = true }) {
   const clouds = useRef(), birds = useRef();
   useFrame(({ clock }, dt) => {
     clouds.current.rotation.y += dt * 0.035;
@@ -567,7 +627,7 @@ function Sky() {
   });
   return (
     <>
-      <group ref={clouds}>
+      <group ref={clouds} visible={showClouds}>
         {[[15, 5, 2], [-14, 8, 6], [5, -10, 14], [-6, 13, -9], [13, -4, -11], [-12, -7, -8]].map((p, i) => (
           <group key={i} position={p} scale={0.8 + (i % 3) * 0.35}>
             {[[0, 0, 0, 1], [0.95, -0.1, 0, 0.75], [-0.95, -0.15, 0, 0.7], [0.3, 0.5, 0, 0.7]].map(([x, y, z, r], j) => (
@@ -603,6 +663,8 @@ Bouncy.propTypes = { hot: PropTypes.bool, children: PropTypes.node };
 
 const SHEEP = [[0.62, 0.55, 0.56], [0.7, 0.45, 0.55], [-0.75, -0.2, 0.62], [0.1, -0.85, 0.5], [-0.3, 0.6, -0.74]].map((v) => new THREE.Vector3(...v).normalize());
 
+Sky.propTypes = { clouds: PropTypes.bool };
+
 /* ---------------- scene ---------------- */
 
 const SIGN_Y = { workshop: 3.4, office: 5.4, tower: 5.2, greenhouse: 2.6, post: 2.8 };
@@ -611,21 +673,27 @@ export default function Scene({ phase, stop, onStop, data, compact }) {
   const planet = useRef();
   const q = useRef(new THREE.Quaternion().setFromEuler(new THREE.Euler(0.4, 0.6, 0)));
   const drag = useRef(null);
-  const idleSpin = useRef(0.6);
   const lookAt = useRef(new THREE.Vector3(-14, 2, 0));
   const kamil = useRef();
   const [hover, setHover] = useState(null);
   const { gl } = useThree();
 
-  const targetQ = useMemo(() => (stop ? faceQuat(STOP_DIRS[STOPS.findIndex((s) => s.id === stop)]) : null), [stop]);
-  // Kamil stands just in front-left of the place on top of the planet.
-  const kamilN = useMemo(() => TOP.clone().add(new THREE.Vector3(-0.21, -0.02, 0.07)).normalize(), []);
+  const stopQ = useMemo(() => (stop ? faceQuat(STOP_DIRS[STOPS.findIndex((s) => s.id === stop)]) : null), [stop]);
+  // Where Kamil stands at a place: front-left of it once the planet has turned it to the top.
+  const STAND_W = useMemo(() => TOP.clone().add(new THREE.Vector3(-0.13, -0.02, 0.12)).normalize(), []);
+  const standFor = (fq) => STAND_W.clone().applyQuaternion(fq.clone().invert());
+  // On the landing he waits at HOME, a meadow between the Workshop and the Greenhouse.
+  const HOME = useMemo(() => STOP_DIRS[0].clone().add(STOP_DIRS[3]).normalize(), []);
+  const homeQ = useMemo(() => faceQuat(HOME), [HOME]);
+  const ctl = useRef({ walking: false, lands: 0, air: 0, stepPhase: 0, pointSide: 1 });
+  const walk = useRef({ cur: null, from: null, to: null, start: 0, t: 0, dur: 0, steps: 0, lastStep: 0, forStop: undefined });
+  const kq = useRef(new THREE.Quaternion());
 
   useFrame((state, dt) => {
     const { camera } = state;
     const landing = phase === 'landing';
-    const cam = landing ? (compact ? [0, 6, 52] : [-14, 9, 58]) : compact ? (stop ? [0, 16.5, 11.5] : [0, 22.5, 18]) : stop ? [1.4, 15.2, 14.5] : [0, 17.5, 22];
-    const look = landing ? (compact ? [0, -9, 0] : [-14, 2, 0]) : compact ? (stop ? [0, 7.4, 2.6] : [0, 4.6, 0]) : stop ? [2.7, 10.4, 3.4] : [0, 9.2, 2];
+    const cam = landing ? (compact ? [0, 6, 52] : [-14, 9, 58]) : compact ? (stop ? [0, 18, 13] : [0, 22.5, 18]) : stop ? [1.4, 15.2, 14.5] : [0, 17.5, 22];
+    const look = landing ? (compact ? [0, -6.8, 0] : [-14, 2, 0]) : compact ? (stop ? [0, 5.6, 2.8] : [0, 4.6, 0]) : stop ? [2.7, 10.4, 3.4] : [0, 9.2, 2];
     const k = phase === 'diving' ? 3 : 2;
     camera.position.x = THREE.MathUtils.damp(camera.position.x, cam[0], k, dt);
     camera.position.y = THREE.MathUtils.damp(camera.position.y, cam[1], k, dt);
@@ -636,20 +704,67 @@ export default function Scene({ phase, stop, onStop, data, compact }) {
     camera.fov = THREE.MathUtils.damp(camera.fov, phase === 'diving' ? 70 : landing ? (compact ? 46 : 32) : compact ? 50 : stop ? 40 : 42, 4, dt);
     camera.updateProjectionMatrix();
 
+    const w = walk.current, c = ctl.current;
+    if (!w.cur) w.cur = HOME.clone();
+    // a new destination: walk there from wherever he is now
+    if (w.forStop !== stop) {
+      w.forStop = stop;
+      w.from = w.cur.clone();
+      w.to = stop ? standFor(stopQ) : HOME.clone();
+      const ang = w.from.angleTo(w.to);
+      w.dur = phase === 'landing' ? 0 : THREE.MathUtils.clamp(ang * 2.1, 0.9, 3.0);
+      w.steps = Math.max(2, Math.round((ang * R) / 0.85));
+      w.start = state.clock.elapsedTime; w.t = 0; w.lastStep = 0;
+    }
+    let walking = false, hopH = 0;
+    if (w.t < w.dur) {
+      w.t = Math.min(w.dur, state.clock.elapsedTime - w.start);   // wall-clock time: same walk on any device
+      const u = w.t / w.dur, e = u < 0.5 ? 2 * u * u : 1 - Math.pow(-2 * u + 2, 2) / 2;
+      w.cur.copy(w.from).lerp(w.to, e).normalize();                    // great-circle-ish walk across the surface
+      const sp = e * w.steps, step = Math.floor(sp);
+      if (step !== w.lastStep) { w.lastStep = step; c.lands += 1; }
+      c.stepPhase = sp % 1;
+      hopH = Math.sin((sp % 1) * Math.PI) * 0.45;
+      walking = w.t < w.dur;
+    } else { w.cur.copy(w.to); c.stepPhase = 0; }
+    c.walking = walking; c.air = hopH;
+
+    // the world turns to follow him; once he's arrived it frames the place
     if (!drag.current) {
-      if (targetQ) q.current.slerp(targetQ, 1 - Math.exp(-dt * 2.2));
-      else { idleSpin.current += dt * 0.07; q.current.slerp(new THREE.Quaternion().setFromEuler(new THREE.Euler(0.4, idleSpin.current, 0)), 1 - Math.exp(-dt * 1.2)); }
+      const tq = walking ? faceQuat(w.cur) : stopQ || homeQ;
+      if (!walking && !stop) {                                          // landing: gentle sway, Kamil stays on top facing you
+        const sway = new THREE.Quaternion().setFromEuler(new THREE.Euler(Math.sin(state.clock.elapsedTime * 0.25) * 0.05, Math.sin(state.clock.elapsedTime * 0.18) * 0.18, 0));
+        q.current.slerp(sway.multiply(tq), 1 - Math.exp(-dt * 1.4));
+      } else q.current.slerp(tq, 1 - Math.exp(-dt * (walking ? 3.2 : 2.2)));
     }
     planet.current.quaternion.copy(q.current);
 
-    // Mostly upright (camera sits high above him, so a pure surface normal would turn him sideways).
-    const base = kamilN.clone().multiplyScalar(R + 0.02);
-    const up = UP.clone();
-    const toCam = camera.position.clone().sub(base);
-    const fwd = toCam.sub(up.clone().multiplyScalar(toCam.dot(up))).normalize();
+    // place Kamil on the surface (planet-local), orient him in world space, then convert
+    const nLocal = w.cur;
+    kamil.current.position.copy(surface(nLocal, 0.02 + hopH));
+    const nWorld = nLocal.clone().applyQuaternion(q.current);
+    const baseW = nWorld.clone().multiplyScalar(R);
+    let up, fwd;
+    if (walking) {
+      up = nWorld;                                                      // feet on the ground, facing the way he's going
+      fwd = w.to.clone().applyQuaternion(q.current).sub(nWorld.clone().multiplyScalar(w.to.clone().applyQuaternion(q.current).dot(nWorld)));
+      if (fwd.lengthSq() < 1e-6) fwd = camera.position.clone().sub(baseW);
+    } else {
+      up = UP.clone();                                                  // presenting: upright, facing you
+      fwd = camera.position.clone().sub(baseW);
+    }
+    fwd.sub(up.clone().multiplyScalar(fwd.dot(up))).normalize();
     const m = new THREE.Matrix4().makeBasis(new THREE.Vector3().crossVectors(up, fwd), up, fwd);
-    kamil.current.position.copy(base);
-    kamil.current.quaternion.setFromRotationMatrix(m);
+    const worldQ = new THREE.Quaternion().setFromRotationMatrix(m);
+    kq.current.slerp(q.current.clone().invert().multiply(worldQ), 1 - Math.exp(-dt * 10));
+    kamil.current.quaternion.copy(kq.current);
+
+    // which arm points at the place: the side of the screen the building is on
+    if (stop) {
+      const b = STOP_DIRS[STOPS.findIndex((x) => x.id === stop)].clone().applyQuaternion(q.current).multiplyScalar(R).project(camera);
+      const k2 = baseW.clone().project(camera);
+      c.pointSide = b.x >= k2.x ? 1 : -1;
+    }
   });
 
   const onDown = (e) => { e.stopPropagation(); drag.current = { x: e.clientX, y: e.clientY, moved: 0 }; gl.domElement.setPointerCapture?.(e.pointerId); };
@@ -676,9 +791,19 @@ export default function Scene({ phase, stop, onStop, data, compact }) {
         <Terrain />
         {[[-5, 125, 2.4], [52, -150, 1.8]].map(([lat, lon, r], i) => {
           const n = dirOf(lat, lon);
-          return <mesh key={i} position={surface(n, 0.02)} quaternion={upTo(n)} material={toon(C.water)}><cylinderGeometry args={[r, r, 0.05, 24]} /><Ink t={0.03} /></mesh>;
+          return (
+            <group key={i} position={surface(n, 0.02)} quaternion={upTo(n)}>
+              <mesh material={toon(C.water)}><cylinderGeometry args={[r, r, 0.05, 24]} /><Ink t={0.03} /></mesh>
+              <Model name="lily_large" h={0.08} position={[r * 0.35, 0.03, r * 0.2]} ink={0} />
+              <Model name="lily_large" h={0.08} position={[-r * 0.4, 0.03, -r * 0.1]} rotation={[0, 2, 0]} ink={0} />
+            </group>
+          );
         })}
         <Paths />
+        <group position={surface(CAMP, -0.04)} quaternion={upTo(CAMP)}>
+          <Model name="tent_detailedOpen" h={1.1} rotation={[0, 0.6, 0]} />
+          <Model name="campfire_stones" h={0.3} position={[1.2, 0, 0.9]} />
+        </group>
         <Scatter />
         <group position={surface(MILL, -0.05)} quaternion={upTo(MILL)}><Windmill /></group>
         {SHEEP.map((n, i) => <group key={i} position={surface(n, -0.03)} quaternion={upTo(n)}><group rotation={[0, i * 1.7, 0]}><Sheep phase={i} /></group></group>)}
@@ -703,16 +828,17 @@ export default function Scene({ phase, stop, onStop, data, compact }) {
                 {s.id === 'greenhouse' && <Greenhouse sprouts={counts.sprouts} />}
                 {s.id === 'post' && <PostOffice hot={hot} />}
               </Bouncy>
+              <Dressing id={s.id} />
               {phase === 'planet' && <Sign text={s.name} icon={s.icon} hot={hot} y={SIGN_Y[s.id]} />}
               <mesh position={[0, 1.6, 0]} visible={false}><sphereGeometry args={[2.6, 8, 6]} /></mesh>
             </group>
           );
         })}
+        <group ref={kamil} scale={phase === 'landing' ? 1.7 : 0.9}>
+          <Kamil ctl={ctl} point={phase === 'planet' && !!stop} excited={phase === 'landing' || hover != null} mood={stop === 'post' ? 'wink' : 'happy'} />
+        </group>
       </group>
-      <group ref={kamil} scale={phase === 'landing' ? 1.7 : stop ? 0.85 : 1.15}>
-        <Kamil hop={stop || 'none'} point={phase === 'planet' && !!stop} excited={phase === 'landing' || hover != null} mood={stop === 'post' ? 'wink' : 'happy'} />
-      </group>
-      <Sky />
+      <Sky clouds={!stop} />
     </>
   );
 }

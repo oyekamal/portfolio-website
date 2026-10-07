@@ -1,0 +1,22 @@
+.view-switch {
+  position: fixed; top: 16px; right: 20px; z-index: 60;
+  display: inline-flex; padding: 3px; gap: 2px;
+  border-radius: 999px;
+  background: rgba(255, 250, 242, .92);
+  border: 2px solid #1c2338; box-shadow: 0 3px 0 #1c2338;
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  font: 600 13px/1 'Geist', system-ui, sans-serif;
+}
+.view-switch a {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 13px; border-radius: 999px;
+  color: #1c2338; text-decoration: none;
+  transition: background .2s, color .2s;
+}
+.view-switch a:hover { background: rgba(28, 35, 56, .08); }
+.view-switch a.on { background: #1c2338; color: #fffaf2; }
+.view-switch a:focus-visible { outline: 3px solid #ffd76a; outline-offset: 2px; }
+@media (max-width: 819px) {
+  .view-switch { top: 10px; right: 12px; font-size: 12px; }
+  .view-switch a { padding: 7px 10px; }
+}

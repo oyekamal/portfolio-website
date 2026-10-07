@@ -1,8 +1,9 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import SEO from '../components/SEO';
 import Slime from '../components/Slime';
+import ViewSwitch from '../components/ViewSwitch';
 import { getBlogsData } from '../services/dataService';
 import { generateCV } from '../services/pdfGenerator';
 import './Home.css';
@@ -17,14 +18,6 @@ const SECTIONS = [
 
 const SOCIAL = { GitHub: 'GitHub', LinkedIn: 'LinkedIn', 'X (Twitter)': 'X', YouTube: 'YouTube', Instagram: 'Instagram' };
 
-const POKES = [
-  'Hey! That tickles.',
-  "I'm Kamil. Kamal built me to do his busywork.",
-  'Drag me. I bounce.',
-  'I read his Slack so he doesn\'t have to.',
-  'I only act on plans he approves. Mostly.',
-  'Squish noted.',
-];
 
 const SECTION_LINE = {
   about: null,
@@ -130,7 +123,8 @@ export default function Home({ portfolioData }) {
   const [log, setLog] = useState(() => [{ t: stamp(), m: 'booted. landing on his name' }]);
   const idle = useRef(null);
   const sleeping = useRef(false);
-  const pokes = useRef(0);
+  const navigate = useNavigate();
+  const leaving = useRef(false);
   const hush = useRef(null);
 
   const note = useCallback((m) => setLog((l) => (l[0]?.m === m ? l : [{ t: stamp(), m }, ...l].slice(0, 5))), []);
@@ -199,11 +193,14 @@ export default function Home({ portfolioData }) {
     note(`hopped onto ${p.name}`);
   };
 
+  // Touching Kamil takes you to his planet. (Dragging him still just throws him.)
   const onPoke = () => {
-    const line = POKES[pokes.current++ % POKES.length];
+    if (leaving.current) return;
+    leaving.current = true;
     setFocus(null);
-    speak(line, 'wow', 2600);
-    note('got poked');
+    speak("Come on, I'll show you my planet!", 'happy', 1400);
+    note('opening the planet');
+    setTimeout(() => navigate('/'), STILL ? 0 : 1100);
   };
 
   const kamil = focus || { perch: spot, ...chat };
@@ -220,6 +217,7 @@ export default function Home({ portfolioData }) {
       />
       <a className="skip" href="#about">Skip to content</a>
 
+      <ViewSwitch />
       <Slime perch={kamil.perch} say={kamil.say} mood={kamil.mood} onPoke={onPoke} />
 
       <div className="pf-grid">

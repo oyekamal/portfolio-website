@@ -226,7 +226,7 @@ body:has(.pf) { background: #f3f5f7; }
   .klog ol { height: 54px; }
   .mbar {
     display: block; position: sticky; top: 0; z-index: 5;
-    margin: 0 -20px; padding: 4px 20px 0;
+    margin: 0 -20px; padding: 52px 20px 0;
     background: color-mix(in srgb, var(--paper) 86%, transparent);
     backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--rule);

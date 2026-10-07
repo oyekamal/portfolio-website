@@ -227,12 +227,8 @@ body:has(.world) { background: #2b3a73; }
   .w-cta { margin-top: 16px; width: 100%; justify-content: center; }
   .w-landing h1 { font-size: 40px; margin-top: 10px; }
   .w-stack { display: none; }
-  .w-flagship { list-style: none; margin-top: 18px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; max-width: 520px; }
-.w-flagship button { width: 100%; text-align: left; padding: 10px 12px; border-radius: 12px; cursor: pointer; background: rgba(255,250,242,.12); border: 1.5px solid rgba(255,255,255,.4); color: #fff; backdrop-filter: blur(6px); transition: background .2s, transform .15s; }
-.w-flagship button:hover { background: rgba(255,250,242,.24); transform: translateY(-2px); }
-.w-flagship b { display: block; font: 700 13px/1.25 var(--body); overflow-wrap: anywhere; }
-.w-flagship span { display: block; margin-top: 4px; font: 500 11px/1.3 var(--mono); color: #ffd76a; }
-.w-proofline { font-size: 11px; margin-top: 10px; }
+  .w-flagship { display: none; }
+  .w-proofline { font-size: 11px; margin-top: 10px; }
   .w-role { font-size: 17px; } .w-tag { font-size: 15px; }
   .w-guide { left: 16px; right: 16px; bottom: 16px; }
   .w-say { font-size: 14px; padding: 11px 14px; }

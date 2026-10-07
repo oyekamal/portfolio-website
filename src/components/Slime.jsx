@@ -151,6 +151,7 @@ export default function Slime({ perch, say, mood, onPoke }) {
     // ---- loop ----------------------------------------------------------------
     let raf;
     const step = (now) => {
+      if (!rig.current || !body.current || !shadow.current) return; // unmounted: refs are cleared before effects clean up
       const dt = Math.min(32, now - s.last) / 16.67; s.last = now; s.t += dt;
       const sc = scale();
       const floor = window.innerHeight - (small() ? 12 : 20);
@@ -280,7 +281,7 @@ export default function Slime({ perch, say, mood, onPoke }) {
       className={`slime mood-${mood}`}
       role="button"
       tabIndex={0}
-      aria-label="Kamil, Muhammad's AI agent. Click to poke, drag to throw."
+      aria-label="Kamil, Muhammad's AI agent. Click to visit his planet, drag to throw."
     >
       {say && <p className={`slime-say ${side}`} aria-live="polite">{say}</p>}
       <div ref={rig} className="slime-rig">

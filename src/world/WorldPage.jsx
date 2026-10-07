@@ -3,6 +3,7 @@ import { Canvas } from '@react-three/fiber';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import SEO from '../components/SEO';
+import ViewSwitch from '../components/ViewSwitch';
 import Scene from './Scene';
 import { STOPS, byId } from './stops';
 import { getBlogsData } from '../services/dataService';
@@ -219,9 +220,9 @@ export default function WorldPage({ portfolioData: data }) {
         </div>
       )}
 
+      <ViewSwitch />
       <header className="w-top">
         <button type="button" className="w-home" onClick={() => { setPhase('landing'); setStop(null); }}>Muhammad Kamal</button>
-        <Link to="/classic" className="w-classic">Classic view</Link>
       </header>
 
       {phase === 'landing' && (
