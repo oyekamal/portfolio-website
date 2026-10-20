@@ -20,3 +20,15 @@
   .view-switch { top: 10px; right: 12px; font-size: 12px; }
   .view-switch a { padding: 7px 10px; }
 }
+
+/* inline variant: sits in the dark showcase header instead of floating */
+.view-switch.inline {
+  position: static; z-index: auto;
+  background: rgba(255, 255, 255, .05); border: 1px solid rgba(236, 230, 218, .14); box-shadow: none;
+  font-size: 13px;
+}
+.view-switch.inline a { color: #b9bfc8; padding: 7px 12px; }
+.view-switch.inline a:hover { background: rgba(255, 255, 255, .07); color: #ece6da; }
+.view-switch.inline a.on { background: #ffc21a; color: #241a00; }
+@media (max-width: 819px) { .view-switch.inline a { padding: 7px 9px; } }
+@media (max-width: 400px) { .view-switch.inline span[aria-hidden] { display: none; } }

@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import SEO from '../components/SEO';
+import ViewSwitch from '../components/ViewSwitch';
 import { generateCV } from '../services/pdfGenerator';
 import './Showcase.css';
 
@@ -105,7 +106,7 @@ export default function Showcase({ portfolioData }) {
           <nav aria-label="Sections">
             <a href="#apps">Apps</a><a href="#films">Films</a><a href="#work">Work</a><a href="#contact">Contact</a>
           </nav>
-          <Link to="/planet" className="sc-tour">3D tour <span aria-hidden="true">↗</span></Link>
+          <ViewSwitch inline />
         </div>
       </header>
 

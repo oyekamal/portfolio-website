@@ -38,6 +38,9 @@ const Navigation = ({ portfolioData }) => {
                     <li><a href="/#experience" className="nav-link" onClick={(e) => { e.preventDefault(); scrollToSection('experience'); }}>Experience</a></li>
                     <li><a href="/#projects" className="nav-link" onClick={(e) => { e.preventDefault(); scrollToSection('projects'); }}>Projects</a></li>
                     <li><a href="/#skills" className="nav-link" onClick={(e) => { e.preventDefault(); scrollToSection('skills'); }}>Skills</a></li>
+                    <li><Link to="/" className="nav-link">Home</Link></li>
+                    <li><Link to="/planet" className="nav-link">Planet</Link></li>
+                    <li><Link to="/classic" className="nav-link">Classic</Link></li>
                     <li><Link to="/blog" className={`nav-link ${isBlogPage ? 'active' : ''}`}>Blog</Link></li>
                     <li><Link to="/youtube" className={`nav-link ${isYouTubePage ? 'active' : ''}`}>YouTube</Link></li>
                     <li><a href="/#contact" className="nav-link" onClick={(e) => { e.preventDefault(); scrollToSection('contact'); }}>Contact</a></li>
