@@ -242,3 +242,6 @@ body:has(.world) { background: #2b3a73; }
 @media (prefers-reduced-motion: reduce) {
   .world *, .world *::before, .world *::after { animation: none !important; transition: none !important; }
 }
+
+/* the flagship cards collide with the guide bubble on shorter desktop screens */
+@media (min-width: 761px) and (max-height: 1000px) { .phase-landing .w-flagship { display: none; } }

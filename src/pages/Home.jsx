@@ -200,7 +200,7 @@ export default function Home({ portfolioData }) {
     setFocus(null);
     speak("Come on, I'll show you my planet!", 'happy', 1400);
     note('opening the planet');
-    setTimeout(() => navigate('/'), STILL ? 0 : 1100);
+    setTimeout(() => navigate('/planet'), STILL ? 0 : 1100);
   };
 
   const kamil = focus || { perch: spot, ...chat };

@@ -6,7 +6,10 @@ export default function ViewSwitch() {
   const classic = useLocation().pathname === '/classic';
   return (
     <nav className="view-switch" aria-label="Choose a view">
-      <Link to="/" className={classic ? '' : 'on'} aria-current={classic ? undefined : 'page'}>
+      <Link to="/" className="">
+        <span aria-hidden="true">←</span> Home
+      </Link>
+      <Link to="/planet" className={classic ? '' : 'on'} aria-current={classic ? undefined : 'page'}>
         <span aria-hidden="true">🪐</span> Planet
       </Link>
       <Link to="/classic" className={classic ? 'on' : ''} aria-current={classic ? 'page' : undefined}>
